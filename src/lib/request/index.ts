@@ -1,15 +1,15 @@
-import { ENV } from "@/constants/env";
+import { ENV } from "@/constants";
 
 interface GeneralProps {
   url: string;
   method: "GET" | "POST";
-  body: any;
+  body?: any;
   host?: "next" | "api";
 }
 
 interface RequestMethodProps {
   url: string;
-  body: any;
+  body?: any;
   host?: "next" | "api";
 }
 
