@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const token = cookies().get("accessToken")?.value;
 
-  const apiResponse = request.post({
+  const apiResponse = await request.post({
     body: { token },
     url: "/auth/logout",
     host: "api",
