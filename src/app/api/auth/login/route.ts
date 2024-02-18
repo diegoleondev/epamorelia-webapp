@@ -13,10 +13,7 @@ export async function POST(req: NextRequest) {
   });
 
   if (response?.success) {
-    const { token, expiresIn } = response.data as unknown as Record<
-      string,
-      any
-    >;
+    const { token, expiresIn } = response.data;
 
     cookies().set("accessToken", token as string, {
       httpOnly: true,
