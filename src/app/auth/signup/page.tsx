@@ -143,7 +143,7 @@ export default function SignUpPage() {
         </>
       )}
       <UtilHrO />
-      <ButtonLink href={ROUTES.LOGIN} color="secondary">
+      <ButtonLink href={ROUTES.LOG_IN} color="secondary">
         iniciar sesión
       </ButtonLink>
     </LayoutScreenAuth>
