@@ -1,0 +1,29 @@
+.button {
+  width: 100%;
+
+  cursor: pointer;
+  padding: 1rem;
+  border: none;
+  border-radius: 1rem;
+  background-color: var(--secondary-color-00);
+
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+a.button {
+  display: block;
+
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1;
+}
+
+.color--secondary {
+  background-color: var(--primary-color-60);
+  color: var(--secondary-color-00);
+}
