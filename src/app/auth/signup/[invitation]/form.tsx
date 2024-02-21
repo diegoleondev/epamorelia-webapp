@@ -55,6 +55,7 @@ export default function SignUpForm(props: { invitation: string | null }) {
           name="username"
           value={form.username}
           className={styles.input}
+          autoComplete="username"
         />
         <UtilMessageError>{error?.username}</UtilMessageError>
       </label>
@@ -66,6 +67,7 @@ export default function SignUpForm(props: { invitation: string | null }) {
           name="email"
           value={form.email}
           className={styles.input}
+          autoComplete="email"
         />
         <UtilMessageError>{error?.email}</UtilMessageError>
       </label>
@@ -77,6 +79,7 @@ export default function SignUpForm(props: { invitation: string | null }) {
           name="password"
           value={form.password}
           className={styles.input}
+          autoComplete="new-password"
         />
         <div>
           {showPassword ? (
