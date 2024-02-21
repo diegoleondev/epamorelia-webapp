@@ -56,6 +56,7 @@ export default function LogInPage() {
             name="email"
             value={form.email}
             className={styles.input}
+            autoComplete="email"
           />
           <UtilMessageError>{error.email}</UtilMessageError>
         </label>
@@ -67,6 +68,7 @@ export default function LogInPage() {
             name="password"
             value={form.password}
             className={styles.input}
+            autoComplete="current-password"
           />
           <UtilMessageError>{error.password}</UtilMessageError>
         </label>
