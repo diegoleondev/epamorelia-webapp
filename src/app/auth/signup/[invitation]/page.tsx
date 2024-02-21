@@ -16,7 +16,7 @@ export default async function Page({
   return (
     <LayoutScreenAuth>
       <Text flex={["column", "ai-center"]}>
-        <Suspense fallback={<TextSkeleton width="5em" />}>
+        <Suspense fallback={<TextSkeleton width="5em" height="large" />}>
           <SourceUsername invitation={params.invitation} />
         </Suspense>
         <TextParagraph align="center">
