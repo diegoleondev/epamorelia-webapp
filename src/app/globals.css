@@ -38,6 +38,9 @@ body {
 }
 
 body {
+  height: auto;
+  min-height: 100vh;
+
   font-size: 18px;
   color: var(--primary-text-color);
   background-color: var(--secondary-color-00);
