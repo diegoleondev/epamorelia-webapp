@@ -2,7 +2,7 @@ import HTTP_STATES from "./http-states";
 const { UNAUTHORIZED, UNKNOWN_ERROR } = HTTP_STATES;
 
 const MESSAGES = {
-  LOGIN: {
+  AUTH: {
     [UNAUTHORIZED]: "Correo o Contraseña incorrectos",
     [UNKNOWN_ERROR]: "Error desconocido, inténtalo más tarde",
   },
