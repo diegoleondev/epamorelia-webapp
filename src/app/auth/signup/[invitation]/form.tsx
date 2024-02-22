@@ -90,6 +90,7 @@ export default function SignUpForm(props: { invitation: string | null }) {
         </div>
         <UtilMessageError>{error?.password}</UtilMessageError>
       </label>
+      <UtilMessageError>{error?._}</UtilMessageError>
       <ButtonAsync onClick={handleSubmit} type="submit">
         registrarse
       </ButtonAsync>
