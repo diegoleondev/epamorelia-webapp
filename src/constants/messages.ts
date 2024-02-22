@@ -1,4 +1,11 @@
+import HTTP_STATES from "./http-states";
+const { UNAUTHORIZED, UNKNOWN_ERROR } = HTTP_STATES;
+
 const MESSAGES = {
+  LOGIN: {
+    [UNAUTHORIZED]: "Correo o Contraseña incorrectos",
+    [UNKNOWN_ERROR]: "Error desconocido, inténtalo más tarde",
+  },
   PASSWORD: {
     SHORT: "La contraseña debe tener al menos 6 caracteres",
     LONG: "La contraseña debe tener como máximo 100 caracteres",
