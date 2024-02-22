@@ -1,0 +1,30 @@
+.hr {
+  position: relative;
+  border: 0;
+  height: 1px;
+  background: #333;
+  background-image: linear-gradient(
+    to right,
+    var(--primary-color-20),
+    var(--secondary-color-00),
+    var(--primary-color-20)
+  );
+  margin: 1em 0;
+  overflow: visible;
+}
+
+.hr::after {
+  content: "o";
+  position: absolute;
+  top: -0.7em;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color-00);
+  padding: 0 1em;
+  color: var(--secondary-color-00);
+  font-size: 1rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 1;
+}
