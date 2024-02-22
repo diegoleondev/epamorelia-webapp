@@ -45,9 +45,7 @@ export default function LogInPage() {
         noValidate
         className={styles.form}
       >
-        <UtilMessageError>
-          {(error._?.length ?? 0) > 0 ? "Correo o Contraseña incorrecta" : ""}
-        </UtilMessageError>
+        <UtilMessageError>{error._}</UtilMessageError>
         <label className={styles.label}>
           <input
             type="email"
