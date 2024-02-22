@@ -1,5 +1,4 @@
-import { ENV } from "@/constants";
-
+import { ENV, HTTP_STATES } from "@/constants";
 interface GeneralProps {
   url: string;
   method: "GET" | "POST";
@@ -26,6 +25,8 @@ const general = async (props: GeneralProps) => {
     });
 
     const { success, details = {}, data } = await response.json();
+    details._ = details._ ?? String(response.status);
+
     return {
       success: Boolean(success),
       details: details as Record<string, string>,
@@ -35,7 +36,7 @@ const general = async (props: GeneralProps) => {
     return {
       success: false,
       details: {
-        _: "ERROR",
+        _: HTTP_STATES.UNKNOWN_ERROR,
       },
       data: null,
     } as const;
