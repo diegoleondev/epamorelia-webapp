@@ -50,7 +50,7 @@ export class SignUpError extends RequestError {
       email: this.getError("email", props.email),
       password: this.getError("password", props.password),
       invitation: this.getError("invitation", props.invitation),
-      _: this.getError("register", props._),
+      _: this.getError("auth", props._),
     };
   }
 }
@@ -66,7 +66,7 @@ export class GetInvitationError extends RequestError {
   parseDetails(props: Details) {
     return {
       id: this.getError("id", props.id),
-      _: this.getError("register", props._),
+      _: this.getError("auth", props._),
     };
   }
 }
@@ -83,7 +83,7 @@ export class LoginError extends RequestError {
     return {
       email: this.getError("email", props.email),
       password: this.getError("password", props.password),
-      _: this.getError("login", props._),
+      _: this.getError("auth", props._),
     };
   }
 }
