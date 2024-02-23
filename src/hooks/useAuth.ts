@@ -1,5 +1,10 @@
 import { ROUTES } from "@/constants";
-import { LoginError, SignUpError } from "@/lib/errors/request-error";
+import {
+  ForgotPasswordError,
+  LoginError,
+  ResetPasswordError,
+  SignUpError,
+} from "@/lib/errors/request-error";
 import { auth } from "@/service";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -63,9 +68,40 @@ export default function useAuth() {
       });
   }
 
+  async function forgotPassword(form: { email: string }) {
+    return await auth
+      .forgotPassword(form)
+      .then(() => {
+        return {};
+      })
+      .catch((error) => {
+        if (!(error instanceof ForgotPasswordError)) {
+          return { _: "ERROR" };
+        }
+        return error.details;
+      });
+  }
+
+  async function resetPassword(form: { token: string; password: string }) {
+    return await auth
+      .resetPassword(form)
+      .then(() => {
+        router.replace(ROUTES.HOME);
+        return {};
+      })
+      .catch((error) => {
+        if (!(error instanceof ResetPasswordError)) {
+          return { _: "ERROR" };
+        }
+        return error.details;
+      });
+  }
+
   return {
     logIn,
     logOut,
     signUp,
+    forgotPassword,
+    resetPassword,
   };
 }
