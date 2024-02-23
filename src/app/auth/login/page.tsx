@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 import {
+  Anchor,
   ButtonAsync,
   ButtonLink,
   LayoutScreenAuth,
@@ -70,6 +71,9 @@ export default function LogInPage() {
           />
           <UtilMessageError>{error.password}</UtilMessageError>
         </label>
+        <Anchor href={ROUTES.FORGOT_PASSWORD} align="right">
+          ¿Olvidaste tu contraseña?
+        </Anchor>
         <ButtonAsync type="submit" onClick={handleSubmit}>
           iniciar sesión
         </ButtonAsync>
