@@ -87,3 +87,36 @@ export class LoginError extends RequestError {
     };
   }
 }
+
+export class ForgotPasswordError extends RequestError {
+  constructor(props: RequestErrorProps) {
+    super({
+      name: props.name ?? "ForgotPasswordError",
+      details: props.details,
+    });
+  }
+
+  parseDetails(props: Details) {
+    return {
+      email: this.getError("email", props.email),
+      _: this.getError("auth", props._),
+    };
+  }
+}
+
+export class ResetPasswordError extends RequestError {
+  constructor(props: RequestErrorProps) {
+    super({
+      name: props.name ?? "ResetPasswordError",
+      details: props.details,
+    });
+  }
+
+  parseDetails(props: Details) {
+    return {
+      password: this.getError("password", props.password),
+      token: this.getError("token", props.token),
+      _: this.getError("auth", props._),
+    };
+  }
+}

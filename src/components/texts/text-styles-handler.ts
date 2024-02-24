@@ -2,7 +2,7 @@ import parseClassNames from "@/utils/parseClassNames";
 import styles from "./text.module.css";
 import { type TextProps } from "./types";
 
-export default function textStylesHandler(props: TextProps) {
+export default function textStylesHandler(props: TextProps<any>) {
   const className = parseClassNames(
     styles.text,
     styles[`color--${props.color ?? "primary"}`],

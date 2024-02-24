@@ -56,7 +56,40 @@ type SignUpSchema = typeof signUpSchema;
 export type SignUpProps = z.infer<SignUpSchema>["body"];
 export const signUp = schemaHandler(signUpSchema);
 
+const forgotPasswordSchema = z.object({
+  body: z.object({
+    email: z
+      .string({
+        required_error: "EMPTY",
+        invalid_type_error: "TYPE",
+      })
+      .email("FORMAT"),
+  }),
+});
+export const forgotPassword = schemaHandler(forgotPasswordSchema);
+export type ForgotPasswordProps = z.infer<typeof forgotPasswordSchema>["body"];
+
+export const resetPasswordSchema = z.object({
+  body: z.object({
+    token: z.string({
+      required_error: "EMPTY",
+      invalid_type_error: "TYPE",
+    }),
+    password: z
+      .string({
+        required_error: "EMPTY",
+        invalid_type_error: "TYPE",
+      })
+      .min(6, "SHORT")
+      .max(100, "LONG"),
+  }),
+});
+export const resetPassword = schemaHandler(resetPasswordSchema);
+export type ResetPasswordProps = z.infer<typeof resetPasswordSchema>["body"];
+
 export default {
   logIn,
   signUp,
+  forgotPassword,
+  resetPassword,
 };
