@@ -8,7 +8,7 @@ export default function icon(props: IconProps) {
   const className = parseClassNames(
     styles.icon,
     classes,
-    styles[`size-${size ?? "inherit"}`],
+    styles[`size-${size ?? "full"}`],
     styles[`color-${color ?? "inherit"}`],
   );
 
