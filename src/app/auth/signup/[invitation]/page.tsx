@@ -20,7 +20,7 @@ export default async function Page({
           <SourceUsername invitation={params.invitation} />
         </Suspense>
         <TextParagraph align="center">
-          Te ha invitado a unirte a la comunidad Pony
+          Te ha invitado a unirte a la sede $branch$
         </TextParagraph>
       </Text>
       <SignUpForm invitation={params.invitation} />
