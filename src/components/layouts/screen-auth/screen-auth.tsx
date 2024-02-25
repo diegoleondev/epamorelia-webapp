@@ -27,11 +27,7 @@ export default function LayoutScreenAuth(props: LayoutScreenAuthProps) {
         <h2 className={styles.title}>Version Beta Cerrada</h2>
         {props.children}
       </main>
-      <footer className={styles.footer}>
-        Es importante destacar que la aplicación no busca presentarse como
-        oficial ni está afiliada a ninguna institución o empresa. Se trata de un
-        proyecto comunitario open source.
-      </footer>
+      <footer className={styles.footer}>Términos y Condiciones</footer>
     </article>
   );
 }

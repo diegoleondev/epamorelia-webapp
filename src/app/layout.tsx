@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Tu Pony App",
+  title: "EPA Morelia",
   description: "Conecta con la red Pony",
   manifest: "/manifest.json",
   icons: {

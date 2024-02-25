@@ -4,9 +4,9 @@
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
-  "description": "Tu Pony App",
-  "name": "Tu Pony App",
-  "short_name": "TuPonyApp",
+  "description": "EPA Morelia",
+  "name": "EPA Morelia",
+  "short_name": "EPA",
   "icons": [
     {
       "src": "/maskable_icon.png",
