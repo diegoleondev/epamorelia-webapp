@@ -1,5 +1,6 @@
 export declare interface UseButtonStyleProps {
   color?: "primary" | "secondary";
+  icon?: boolean;
 }
 
 type ButtonHTMLAttributes = React.ButtonHTMLAttributes<HTMLButtonElement>;
@@ -11,7 +12,7 @@ export declare type ButtonProps = {
   UseButtonStyleProps;
 
 export declare type ButtonLinkProps = {
-  children?: string;
+  children?: React.ReactNode;
 } & AnchorHTMLAttributes &
   UseButtonStyleProps;
 

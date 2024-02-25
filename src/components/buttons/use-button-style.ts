@@ -9,7 +9,11 @@ const getStyle = (styleFlag: string, prop: string | undefined) => {
 };
 
 export default function useButtonStyle(props: UseButtonStyleProps) {
-  const className = [styles.button, getStyle("color", props.color)]
+  const className = [
+    styles.button,
+    getStyle("color", props.color),
+    props.icon !== undefined && styles.icon,
+  ]
     .filter(Boolean)
     .join(" ");
 
