@@ -1,7 +1,8 @@
 import { ROUTES } from "@/constants";
-import { IconPony } from "@/icons";
+import { IconButterfly } from "@/icons";
 import Link from "next/link";
 import styles from "./screen-auth.module.css";
+import Paragraph from "@/components/texts/paragraph";
 
 interface LayoutScreenAuthProps {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ export default function LayoutScreenAuth(props: LayoutScreenAuthProps) {
       <header className={styles.header}>
         <Link href={ROUTES.HOME} replace prefetch scroll={false}>
           <div className={styles.logo}>
-            <IconPony
+            <IconButterfly
               style={{
                 color: "black",
                 width: "100%",
@@ -24,10 +25,14 @@ export default function LayoutScreenAuth(props: LayoutScreenAuthProps) {
         </Link>
       </header>
       <main className={styles.main}>
-        <h2 className={styles.title}>Version Beta Cerrada</h2>
+        <h2 className={styles.title}>EPA Morelia</h2>
         {props.children}
       </main>
-      <footer className={styles.footer}>Términos y Condiciones</footer>
+      <footer className={styles.footer}>
+        <Paragraph size="small" align="center">
+          Términos y Condiciones
+        </Paragraph>
+      </footer>
     </article>
   );
 }
