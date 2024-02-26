@@ -1,0 +1,16 @@
+.page {
+  background-color: white;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+  z-index: 100;
+  border-radius: 1rem;
+}
