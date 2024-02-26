@@ -1,6 +1,11 @@
 "use client";
 
-import { ButtonAsync, LayoutScreenAuth, UtilMessageError } from "@/components";
+import {
+  Button,
+  ButtonAsync,
+  LayoutScreenAuth,
+  UtilMessageError,
+} from "@/components";
 import { useAuth } from "@/hooks";
 import { IconEye, IconEyeOff } from "@/icons";
 import { useState } from "react";
@@ -63,13 +68,15 @@ export default function ResetPasswordPage(props: Props) {
             className="input"
             autoComplete="new-password"
           />
-          <div>
-            {showPassword ? (
-              <IconEyeOff onClick={handleToggleShowPassword} />
-            ) : (
-              <IconEye onClick={handleToggleShowPassword} />
-            )}
-          </div>
+          {showPassword ? (
+            <Button icon onClick={handleToggleShowPassword}>
+              <IconEyeOff />
+            </Button>
+          ) : (
+            <Button icon onClick={handleToggleShowPassword}>
+              <IconEye />
+            </Button>
+          )}
           <UtilMessageError>{error?.password}</UtilMessageError>
         </label>
         <UtilMessageError>{error?._}</UtilMessageError>

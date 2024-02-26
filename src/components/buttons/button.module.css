@@ -15,6 +15,15 @@
   line-height: 1;
 }
 
+.icon {
+  display: inline-block;
+  height: 3rem;
+  width: 3rem;
+
+  padding: 0.5rem;
+  border-radius: 4rem;
+}
+
 a.button {
   display: block;
 
@@ -27,4 +36,10 @@ a.button {
 .color--secondary {
   background-color: var(--primary-color-60);
   color: var(--secondary-color-00);
+}
+
+.color--transparent {
+  background-color: transparent;
+  color: inherit;
+  border-radius: 0;
 }

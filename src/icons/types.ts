@@ -4,14 +4,6 @@ import { type SVGProps } from "react";
 export declare type IconProps = {
   className?: string;
   style?: React.CSSProperties;
-  size?: "em" | "small" | "medium" | "large";
-  color?:
-    | "inherit"
-    | "primary"
-    | "secondary"
-    | "tertiary"
-    | "quaternary"
-    | "error"
-    | "success"
-    | "warning";
+  size?: "em" | "small" | "medium" | "large" | "full";
+  color?: "inherit" | "primary" | "secondary";
 } & SVGProps<SVGSVGElement>;

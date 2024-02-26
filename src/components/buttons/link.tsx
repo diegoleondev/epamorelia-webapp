@@ -2,12 +2,17 @@
 
 import { ROUTES } from "@/constants";
 import Link from "next/link";
-import type { ButtonLinkProps } from "./types";
-import useButtonStyle from "./use-button-style";
+import type { ButtonLinkProps, ButtonProps } from "./types";
+import useButtonStyle from "./button";
 
+// TODO: refactor to useButtonStyle
 export default function ButtonLink(props: ButtonLinkProps) {
+  const { type, ...attributes } = props;
   return (
-    <Link href={props.href ?? ROUTES.HOME} {...useButtonStyle(props)}>
+    <Link
+      href={props.href ?? ROUTES.HOME}
+      {...(useButtonStyle(attributes as ButtonProps) as ButtonLinkProps)}
+    >
       {props.children}
     </Link>
   );
