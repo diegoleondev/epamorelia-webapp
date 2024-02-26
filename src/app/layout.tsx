@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "EPA Morelia",
-  description: "Conecta con la red Pony",
+  title: "EPA Morelia ",
+  description: "Encuentro con Cristo, para adolescentes. ",
   manifest: "/manifest.json",
   icons: {
     apple: "/maskable_icon.png",
