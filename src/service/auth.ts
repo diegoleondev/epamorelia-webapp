@@ -28,7 +28,7 @@ async function signUp(props: Partial<SignUpProps>) {
     throw new SignUpError({ details });
   }
 
-  return data;
+  return data as { token: string; expiresIn: string };
 }
 
 async function logIn(props: LogInProps) {
@@ -46,7 +46,7 @@ async function logIn(props: LogInProps) {
     throw new LoginError({ details });
   }
 
-  return data;
+  return data as { token: string; expiresIn: string };
 }
 
 async function logOut() {
