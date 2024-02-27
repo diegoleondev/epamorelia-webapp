@@ -19,9 +19,6 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       maxAge: Math.floor(expiresIn / 1000),
     });
-
-    response.data.token = undefined;
-    return NextResponse.json(response);
   }
 
   return NextResponse.json(response);

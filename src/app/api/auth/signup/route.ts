@@ -12,15 +12,14 @@ export async function POST(req: NextRequest) {
     host: "api",
   });
 
-  if (!response?.success) return NextResponse.json(response);
+  if (response?.success) {
+    const { token, expiresIn } = response.data;
 
-  const { token, expiresIn } = response.data;
+    cookies().set("accessToken", token as string, {
+      httpOnly: true,
+      maxAge: Math.floor(expiresIn / 1000),
+    });
+  }
 
-  cookies().set("accessToken", token as string, {
-    httpOnly: true,
-    maxAge: Math.floor(expiresIn / 1000),
-  });
-
-  response.data.token = undefined;
   return NextResponse.json(response);
 }
