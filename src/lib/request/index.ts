@@ -12,6 +12,14 @@ interface RequestMethodProps {
   host?: "next" | "api";
 }
 
+const getSession = () => {
+  try {
+    return localStorage.getItem("accessToken");
+  } catch (error) {
+    return "no token";
+  }
+};
+
 const general = async (props: GeneralProps) => {
   const url = props.host === "api" ? `${ENV.API_URL}${props.url}` : props.url;
 
@@ -20,6 +28,7 @@ const general = async (props: GeneralProps) => {
       body: JSON.stringify(props.body),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${getSession()}`,
       },
       method: props.method,
     });
@@ -33,6 +42,7 @@ const general = async (props: GeneralProps) => {
       data,
     } as const;
   } catch (error) {
+    console.error("Fetch error", error);
     return {
       success: false,
       details: {
