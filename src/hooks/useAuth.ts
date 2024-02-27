@@ -8,6 +8,16 @@ import {
 import { auth } from "@/service";
 import { useRouter, useSearchParams } from "next/navigation";
 
+const saveSession = (data: { token: string; expiresIn: string }) => {
+  localStorage.setItem("accessToken", data.token);
+  localStorage.setItem("expiresIn", data.expiresIn);
+};
+
+const removeSession = () => {
+  localStorage.removeItem("accessToken");
+  localStorage.removeItem("expiresIn");
+};
+
 export default function useAuth() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -16,6 +26,7 @@ export default function useAuth() {
     return await auth
       .logOut()
       .then(() => {
+        removeSession();
         router.replace(ROUTES.HOME);
         return {};
       })
@@ -28,7 +39,9 @@ export default function useAuth() {
   async function logIn(form: { email: string; password: string }) {
     return await auth
       .logIn(form)
-      .then(() => {
+      .then((data) => {
+        saveSession(data);
+
         const redirect = searchParams.get("redirect");
         router.replace(redirect ?? ROUTES.HOME);
         return {};
@@ -49,7 +62,8 @@ export default function useAuth() {
   }) {
     return await auth
       .signUp(form)
-      .then(() => {
+      .then((data) => {
+        saveSession(data);
         const redirect = searchParams.get("redirect");
         router.replace(redirect ?? ROUTES.HOME);
         return {};
