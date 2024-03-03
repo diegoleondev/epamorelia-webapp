@@ -4,6 +4,7 @@ import { type TextProps } from "./types";
 
 export default function textStylesHandler(props: TextProps<any>) {
   const className = parseClassNames(
+    props.className,
     styles.text,
     styles[`color--${props.color ?? "inherit"}`],
     styles[`size--${props.size ?? "inherit"}`],
