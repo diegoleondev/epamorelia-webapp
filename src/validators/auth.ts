@@ -1,95 +1,70 @@
+import { DETAILS } from "@/constants";
 import { z } from "zod";
 import { schemaHandler } from "./validatorHandler";
 
-const logInSchema = z.object({
-  body: z.object({
-    email: z
-      .string({
-        required_error: "REQUIRED",
-        invalid_type_error: "TYPE",
-      })
-      .email("FORMAT"),
-    password: z
-      .string({
-        required_error: "REQUIRED",
-        invalid_type_error: "TYPE",
-      })
-      .min(6, "SHORT")
-      .max(100, "LONG"),
-  }),
+// SCHEMAS
+const emailSchema = z
+  .string({
+    required_error: DETAILS.REQUIRED,
+    invalid_type_error: DETAILS.TYPE,
+  })
+  .email(DETAILS.FORMAT);
+
+const passwordSchema = z
+  .string({
+    required_error: DETAILS.REQUIRED,
+    invalid_type_error: DETAILS.TYPE,
+  })
+  .min(6, DETAILS.SHORT)
+  .max(100, DETAILS.LONG);
+
+const usernameSchema = z
+  .string({
+    required_error: DETAILS.REQUIRED,
+    invalid_type_error: DETAILS.TYPE,
+  })
+  .min(3, DETAILS.SHORT)
+  .max(25, DETAILS.LONG);
+
+const invitationSchema = z
+  .string({
+    required_error: DETAILS.REQUIRED,
+    invalid_type_error: DETAILS.TYPE,
+  })
+  .uuid("FORMAT");
+
+const tokenSchema = z.string({
+  required_error: DETAILS.REQUIRED,
+  invalid_type_error: DETAILS.TYPE,
 });
 
-export const logIn = schemaHandler(logInSchema);
-export type LogInProps = z.infer<typeof logInSchema>["body"];
+const logInSchema = z.object({
+  email: emailSchema,
+  password: passwordSchema,
+});
+
+// VALIDATORS
+export const logInValidator = schemaHandler(logInSchema);
+export type LogInProps = z.infer<typeof logInSchema>;
 
 const signUpSchema = z.object({
-  body: z.object({
-    email: z
-      .string({
-        required_error: "REQUIRED",
-        invalid_type_error: "TYPE",
-      })
-      .email("FORMAT"),
-    password: z
-      .string({
-        required_error: "REQUIRED",
-      })
-      .min(6, "SHORT")
-      .max(100, "LONG"),
-    username: z
-      .string({
-        required_error: "REQUIRED",
-        invalid_type_error: "TYPE",
-      })
-      .min(3, "SHORT")
-      .max(25, "LONG"),
-    invitation: z
-      .string({
-        required_error: "REQUIRED",
-        invalid_type_error: "TYPE",
-      })
-      .uuid("FORMAT"),
-  }),
+  email: emailSchema,
+  password: passwordSchema,
+  username: usernameSchema,
+  invitation: invitationSchema,
 });
-
-type SignUpSchema = typeof signUpSchema;
-export type SignUpProps = z.infer<SignUpSchema>["body"];
-export const signUp = schemaHandler(signUpSchema);
+export type SignUpProps = z.infer<typeof signUpSchema>;
+export const signUpValidator = schemaHandler(signUpSchema);
 
 const forgotPasswordSchema = z.object({
-  body: z.object({
-    email: z
-      .string({
-        required_error: "EMPTY",
-        invalid_type_error: "TYPE",
-      })
-      .email("FORMAT"),
-  }),
+  email: emailSchema,
 });
-export const forgotPassword = schemaHandler(forgotPasswordSchema);
-export type ForgotPasswordProps = z.infer<typeof forgotPasswordSchema>["body"];
+export type ForgotPasswordProps = z.infer<typeof forgotPasswordSchema>;
+export const forgotPasswordValidator = schemaHandler(forgotPasswordSchema);
 
 export const resetPasswordSchema = z.object({
-  body: z.object({
-    token: z.string({
-      required_error: "EMPTY",
-      invalid_type_error: "TYPE",
-    }),
-    password: z
-      .string({
-        required_error: "EMPTY",
-        invalid_type_error: "TYPE",
-      })
-      .min(6, "SHORT")
-      .max(100, "LONG"),
-  }),
+  token: tokenSchema,
+  password: passwordSchema,
 });
-export const resetPassword = schemaHandler(resetPasswordSchema);
-export type ResetPasswordProps = z.infer<typeof resetPasswordSchema>["body"];
-
-export default {
-  logIn,
-  signUp,
-  forgotPassword,
-  resetPassword,
-};
+export type ResetPasswordProps = z.infer<typeof resetPasswordSchema>;
+export const resetPasswordValidator = schemaHandler(resetPasswordSchema);
