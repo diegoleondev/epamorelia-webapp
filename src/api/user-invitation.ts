@@ -2,7 +2,7 @@ import requestCSR from "@/utils/request-csr";
 import {
   getInvitationValidator,
   type GetInvitationProps,
-} from "@/validators/invitation";
+} from "@/validators/user-invitation";
 
 export async function getUserInvitationApi(props: GetInvitationProps) {
   const preRequest = getInvitationValidator({ query: props });
