@@ -1,28 +1,20 @@
 import requestCSR from "@/utils/request-csr";
-import { auth } from "@/validators";
-import type {
-  ForgotPasswordProps,
-  LogInProps,
-  SignUpProps,
+import {
+  forgotPasswordValidator,
+  logInValidator,
+  resetPasswordValidator,
+  signUpValidator,
+  type ForgotPasswordProps,
+  type LogInProps,
+  type ResetPasswordProps,
+  type SignUpProps,
 } from "@/validators/auth";
 
-interface Data {
-  branchId: string;
-  createdAt: string;
-  email: string;
-  expiresIn: number;
-  id: string;
-  roleId: string;
-  username: string;
-  verified: boolean;
-  token: string;
-}
-
 export async function signUpApi(body: Partial<SignUpProps>) {
-  const preRequest = auth.signUp({ body });
+  const preRequest = signUpValidator(body);
   if (!preRequest.success) return preRequest;
 
-  return await requestCSR<Data>({
+  return await requestCSR<User>({
     url: "/api/auth/signup",
     host: "next",
     body,
@@ -31,10 +23,10 @@ export async function signUpApi(body: Partial<SignUpProps>) {
 }
 
 export async function logInApi(body: LogInProps) {
-  const preRequest = auth.logIn({ body });
+  const preRequest = logInValidator(body);
   if (!preRequest.success) return preRequest;
 
-  return await requestCSR<Data>({
+  return await requestCSR<User>({
     url: "/api/auth/login",
     host: "next",
     body,
@@ -51,7 +43,7 @@ export async function logOutApi() {
 }
 
 export async function forgotPasswordApi(body: ForgotPasswordProps) {
-  const preRequest = auth.forgotPassword({ body });
+  const preRequest = forgotPasswordValidator({ body });
   if (!preRequest.success) return preRequest;
 
   return await requestCSR({
@@ -62,11 +54,8 @@ export async function forgotPasswordApi(body: ForgotPasswordProps) {
   });
 }
 
-export async function resetPasswordApi(body: {
-  password: string;
-  token: string;
-}) {
-  const preRequest = auth.resetPassword({ body });
+export async function resetPasswordApi(body: ResetPasswordProps) {
+  const preRequest = resetPasswordValidator({ body });
   if (!preRequest.success) return preRequest;
 
   return await requestCSR({
