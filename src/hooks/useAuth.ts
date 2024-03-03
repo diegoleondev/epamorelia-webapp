@@ -1,11 +1,14 @@
-import { ROUTES } from "@/constants";
 import {
-  ForgotPasswordError,
-  LoginError,
-  ResetPasswordError,
-  SignUpError,
-} from "@/lib/errors/request-error";
-import { auth } from "@/service";
+  forgotPasswordApi,
+  logInApi,
+  logOutApi,
+  resetPasswordApi,
+  signUpApi,
+} from "@/api/auth";
+import { MESSAGES, ROUTES } from "@/constants";
+import useUserContext from "@/contexts/user";
+import { detailsToMessage } from "@/utils/details-to-message";
+
 import { useRouter, useSearchParams } from "next/navigation";
 
 const saveSession = (data: { token: string; expiresIn: string }) => {
@@ -19,99 +22,94 @@ const removeSession = () => {
 };
 
 export default function useAuth() {
+  const user = useUserContext();
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  async function logOut() {
-    return await auth
-      .logOut()
-      .then(() => {
-        removeSession();
-        router.replace(ROUTES.HOME);
-        return {};
-      })
-      .catch((e) => {
-        console.error(e);
-        return { _: "ERROR" };
-      });
-  }
+  const redirect = (url: string) => {
+    const currentUrl = window.location.href;
 
-  async function logIn(form: { email: string; password: string }) {
-    return await auth
-      .logIn(form)
-      .then((data) => {
-        saveSession(data);
+    const interval = setInterval(() => {
+      if (window.location.href !== currentUrl) {
+        clearInterval(interval);
+        return;
+      }
 
-        const redirect = searchParams.get("redirect");
-        router.replace(redirect ?? ROUTES.HOME);
-        return {};
-      })
-      .catch((error) => {
-        if (!(error instanceof LoginError)) {
-          return { _: "ERROR" };
-        }
-        return error.details;
-      });
-  }
+      router.replace(url);
+    }, 250);
+  };
 
-  async function signUp(form: {
+  const toMessage = (details: any) =>
+    detailsToMessage({
+      details,
+      dictionary: MESSAGES.AUTH,
+    });
+
+  const logOut = async () => {
+    const { details, success } = await logOutApi();
+
+    if (!success) return toMessage(details);
+
+    removeSession();
+    user.clearData();
+    redirect(ROUTES.LOG_IN);
+  };
+
+  const logIn = async (form: { email: string; password: string }) => {
+    const { success, data, details } = await logInApi(form);
+
+    if (!success || data === null) return toMessage(details);
+
+    saveSession({
+      token: data.token,
+      expiresIn: String(data.expiresIn),
+    });
+
+    const to = searchParams.get("redirect");
+    user.setData(data);
+    redirect(to ?? ROUTES.HOME);
+
+    return {};
+  };
+
+  const signUp = async (form: {
     username?: string;
     email?: string;
     password?: string;
     invitation?: string;
-  }) {
-    return await auth
-      .signUp(form)
-      .then((data) => {
-        saveSession(data);
-        const redirect = searchParams.get("redirect");
-        router.replace(redirect ?? ROUTES.HOME);
-        return {};
-      })
-      .catch((error) => {
-        if (!(error instanceof SignUpError)) {
-          return { _: "ERROR" };
-        }
+  }) => {
+    const { success, data, details } = await signUpApi(form);
 
-        if (error.details.invitation === "INVALID") {
-          router.replace(ROUTES.SIGN_UP_ERROR);
-          return {};
-        }
+    if (!success || data === null) return toMessage(details);
 
-        return error.details;
-      });
-  }
+    saveSession({
+      token: data.token,
+      expiresIn: String(data.expiresIn),
+    });
 
-  async function forgotPassword(form: { email: string }) {
-    return await auth
-      .forgotPassword(form)
-      .then(() => {
-        return {};
-      })
-      .catch((error) => {
-        if (!(error instanceof ForgotPasswordError)) {
-          return { _: "ERROR" };
-        }
-        return error.details;
-      });
-  }
+    user.setData(data);
+    redirect(ROUTES.HOME);
 
-  async function resetPassword(form: { token: string; password: string }) {
-    return await auth
-      .resetPassword(form)
-      .then(() => {
-        router.replace(ROUTES.HOME);
-        return {};
-      })
-      .catch((error) => {
-        if (!(error instanceof ResetPasswordError)) {
-          return { _: "ERROR" };
-        }
-        return error.details;
-      });
-  }
+    return {};
+  };
+
+  const forgotPassword = async (form: { email: string }) => {
+    const response = await forgotPasswordApi(form);
+    return toMessage(response.details);
+  };
+
+  const resetPassword = async (form: { token: string; password: string }) => {
+    const response = await resetPasswordApi(form);
+
+    if (response.success) {
+      redirect(ROUTES.LOG_IN);
+    }
+
+    return toMessage(response.details);
+  };
 
   return {
+    user,
     logIn,
     logOut,
     signUp,
