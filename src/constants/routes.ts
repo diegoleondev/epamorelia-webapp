@@ -5,7 +5,10 @@ const ROUTES = {
   LOG_IN: "/auth/login",
   FORGOT_PASSWORD: "/auth/forgot-password",
 
-  SUBJECT: "/subject",
+  BRANCH: "/dashboard/branch",
+  USER: "/dashboard/user",
+
+  PROFILE: "/profile",
 } as const;
 
 export default ROUTES;

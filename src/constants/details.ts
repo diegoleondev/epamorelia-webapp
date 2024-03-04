@@ -1,0 +1,15 @@
+const DETAILS = {
+  EMPTY: "EMPTY",
+  TYPE: "TYPE",
+  SHORT: "SHORT",
+  LONG: "LONG",
+  MIN: "MIN",
+  MAX: "MAX",
+  FORMAT: "FORMAT",
+  INVALID: "INVALID",
+  UNIQUE: "UNIQUE",
+  REQUIRED: "REQUIRED",
+  UNKNOWN: "UNKNOWN",
+};
+
+export default DETAILS;
