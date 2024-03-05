@@ -25,6 +25,7 @@ const MESSAGES = {
     _: {
       [UNAUTHORIZED]: "Correo o Contraseña incorrectos",
       [UNKNOWN_ERROR]: "Error desconocido, inténtalo más tarde",
+      [BAD_REQUEST]: "Credenciales inválidas",
     },
   },
   BRANCH: {
