@@ -21,7 +21,7 @@ const limitSchema = z
   .min(1, DETAILS.MIN)
   .max(1000, DETAILS.MAX);
 
-const idSchema = z
+export const branchIdSchema = z
   .string({
     required_error: DETAILS.EMPTY,
     invalid_type_error: DETAILS.TYPE,
@@ -29,17 +29,19 @@ const idSchema = z
   .uuid(DETAILS.FORMAT);
 
 // VALIDATORS
-const getSchema = zod.object({
-  id: idSchema,
+const findOneSchema = zod.object({
+  id: branchIdSchema,
 });
-export const getBranchValidator = schemaHandler(getSchema);
-export type GetBranchProps = z.infer<typeof getSchema>;
+export const findOneBranchValidator = schemaHandler(findOneSchema);
+export type findOmeBranchProps = z.infer<typeof findOneSchema>;
 
-const getBranchUsersSchema = zod.object({
-  id: idSchema,
+const findAllBranchUsersSchema = zod.object({
+  id: branchIdSchema,
 });
-export const getBranchUsersValidator = schemaHandler(getBranchUsersSchema);
-export type GetBranchUsersProps = z.infer<typeof getBranchUsersSchema>;
+export const findAllBranchUsersValidator = schemaHandler(
+  findAllBranchUsersSchema,
+);
+export type FindAllBranchUsersProps = z.infer<typeof findAllBranchUsersSchema>;
 
 const createSchema = zod.object({
   name: nameSchema,
@@ -49,7 +51,7 @@ export const createBranchValidator = schemaHandler(createSchema);
 export type CreateBranchProps = z.infer<typeof createSchema>;
 
 const updateBranch = zod.object({
-  id: idSchema,
+  id: branchIdSchema,
   name: nameSchema.optional(),
   limit: limitSchema.optional(),
 });

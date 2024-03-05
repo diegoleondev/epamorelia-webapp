@@ -1,6 +1,7 @@
 import { DETAILS } from "@/constants";
 import { schemaHandler } from "@/validators/validatorHandler";
 import { z } from "zod";
+import { branchIdSchema } from "./branch";
 
 const idSchema = z
   .string({
@@ -9,9 +10,25 @@ const idSchema = z
   })
   .uuid(DETAILS.FORMAT);
 
+const rolIdSchema = z.enum(["ADMIN", "MANAGER", "STAFF", "USER"]);
+
 const getSchema = z.object({
   id: idSchema,
 });
 
-export const getInvitationValidator = schemaHandler(getSchema);
-export type GetInvitationProps = z.infer<typeof getSchema>;
+export const findOneUserInvitationValidator = schemaHandler(getSchema);
+export type FindUserInvitationProps = z.infer<typeof getSchema>;
+
+const findAllSchema = z.object({
+  branchId: branchIdSchema,
+});
+export const findAllUserInvitationsValidator = schemaHandler(findAllSchema);
+export type FindAllUserInvitationsProps = z.infer<typeof findAllSchema>;
+
+const createSchema = z.object({
+  branchId: branchIdSchema,
+  roleId: rolIdSchema,
+  reference: z.string().optional(),
+});
+export const createInvitationValidator = schemaHandler(createSchema);
+export type CreateUserInvitationProps = z.infer<typeof createSchema>;
