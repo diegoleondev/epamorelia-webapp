@@ -1,0 +1,27 @@
+.cardUser {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 48px 1fr 48px;
+
+  border-radius: 1rem;
+  background-color: var(--secondary-color-00);
+  gap: 1rem;
+  color: white;
+
+  padding: 1rem;
+}
+
+.cardUser > div {
+  height: 100%;
+  aspect-ratio: 1/1;
+  background-color: var(--secondary-color-60);
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+
+.cardUser > span {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

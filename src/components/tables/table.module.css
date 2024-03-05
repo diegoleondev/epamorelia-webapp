@@ -1,0 +1,41 @@
+.table {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+
+.table a,
+.table .row {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  padding: 10px;
+  border-bottom: 1px solid #000000;
+  cursor: pointer;
+}
+
+.table a:nth-child(odd) {
+  background-color: var(--primary-color-80);
+}
+
+.table a:nth-child(even) {
+  background-color: var(--primary-color-60);
+}
+
+.table .row:first-child,
+.table a:last-child {
+  position: sticky;
+  top: 0;
+  background-color: var(--secondary-color-00);
+  color: #ffffff;
+}
+
+.table a:last-child {
+  bottom: 0;
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+}
