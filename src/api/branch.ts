@@ -1,17 +1,17 @@
 import requestCSR from "@/utils/request-csr";
 import {
   createBranchValidator,
-  getBranchValidator,
+  findOneBranchValidator,
   updateBranchValidator,
   type CreateBranchProps,
-  type GetBranchProps,
-  type GetBranchUsersProps,
+  type FindAllBranchUsersProps,
   type UpdateBranchProps,
+  type findOmeBranchProps,
 } from "@/validators/branch";
 import requestSSR from "../utils/request-srr";
 
-export async function getBranchAPI(props: GetBranchProps) {
-  const preResponse = getBranchValidator(props);
+export async function findOneBranchAPI(props: findOmeBranchProps) {
+  const preResponse = findOneBranchValidator(props);
   if (!preResponse.success) return preResponse;
 
   return await requestSSR<Branch>({
@@ -20,8 +20,8 @@ export async function getBranchAPI(props: GetBranchProps) {
   });
 }
 
-export async function getBranchUsersAPI(props: GetBranchUsersProps) {
-  const preResponse = getBranchValidator(props);
+export async function findAllBranchUsersAPI(props: FindAllBranchUsersProps) {
+  const preResponse = findOneBranchValidator(props);
   if (!preResponse.success) return preResponse;
 
   return await requestSSR<User[]>({
@@ -30,7 +30,7 @@ export async function getBranchUsersAPI(props: GetBranchUsersProps) {
   });
 }
 
-export async function getAllBranchesAPI() {
+export async function findAllBranchesAPI() {
   return await requestSSR<Branch[]>({
     url: "/branch",
     method: "GET",
