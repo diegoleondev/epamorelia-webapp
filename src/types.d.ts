@@ -15,3 +15,13 @@ interface User {
   verified: boolean;
   token: string;
 }
+
+interface UserInvitation {
+  id: string;
+  reference: string | null;
+  sourceUserId: string;
+  targetUserId: string | null;
+  roleId: string;
+  branchId: string;
+  createdAt: string;
+}
