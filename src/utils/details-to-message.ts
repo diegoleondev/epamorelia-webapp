@@ -1,4 +1,5 @@
 import { type Details } from "@/validators/validatorHandler";
+import { camelToSnake } from "./parse";
 
 type Dictionary = Record<string, Record<string, string>>;
 
@@ -14,7 +15,7 @@ function detailToMessage(
 ) {
   if (typeof typeError !== "string") return undefined;
 
-  const messages = dictionary[element.toUpperCase()];
+  const messages = dictionary[camelToSnake(element).toLocaleUpperCase()];
   if (messages === undefined) return String(typeError);
 
   const message = messages[typeError.toUpperCase()];
