@@ -43,3 +43,15 @@ a.button {
   color: inherit;
   border-radius: 0;
 }
+
+.color-success {
+  background-color: var(--success-color-60);
+  color: var(--secondary-color-00);
+  border-radius: 0;
+}
+
+.color-danger {
+  background-color: var(--danger-color-60);
+  color: var(--secondary-color-00);
+  border-radius: 0;
+}
