@@ -7,3 +7,13 @@ export function snakeToCamel(str: string) {
     group.toUpperCase().replace("-", "").replace("_", ""),
   );
 }
+
+export function index<T extends Record<string, any>>(
+  array: T[],
+  key: keyof T,
+): Record<string, T> {
+  return array.reduce<Record<string, T>>((acc, item) => {
+    acc[item[key]] = item;
+    return acc;
+  }, {});
+}
