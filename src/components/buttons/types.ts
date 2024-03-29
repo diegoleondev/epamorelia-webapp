@@ -1,5 +1,5 @@
 export declare interface UseButtonStyleProps {
-  color?: "primary" | "secondary" | "transparent";
+  color?: "primary" | "secondary" | "transparent" | "success" | "danger";
   icon?: boolean;
 }
 
