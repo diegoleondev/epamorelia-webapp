@@ -25,3 +25,20 @@ interface UserInvitation {
   branchId: string;
   createdAt: string;
 }
+
+interface FormUserData {
+  id: string;
+  userType: string;
+  fullName: string;
+  phone: string;
+  branchId: string;
+  sex: boolean;
+  emergencyContactFullName: string;
+  emergencyContactPhone: string;
+  allergies: string;
+  diseases: string;
+  medicine: string;
+  editable: boolean;
+  completed: boolean;
+  deleted: boolean;
+}
