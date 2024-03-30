@@ -27,6 +27,9 @@ export default async function UpdateBranch(props: UpdateBranchProps) {
       <ButtonLink href={`${ROUTES.BRANCH}/${branchId}/invitations`}>
         Invitaciones
       </ButtonLink>
+      <ButtonLink href={`${ROUTES.BRANCH}/${branchId}/forms`}>
+        Formularios
+      </ButtonLink>
     </LayoutScreenGeneric>
   );
 }
