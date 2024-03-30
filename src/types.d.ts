@@ -38,6 +38,7 @@ interface FormUserData {
   allergies: string;
   diseases: string;
   medicine: string;
+  branchName: string;
   editable: boolean;
   completed: boolean;
   deleted: boolean;
