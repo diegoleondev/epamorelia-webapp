@@ -7,7 +7,12 @@ export async function middleware(request: NextRequest) {
   const url = new URL(request.url);
   const hasSession = cookies().get("accessToken")?.value !== undefined;
 
+  const isFormRoute = url.pathname.startsWith("/form");
   const isAuthRoute = url.pathname.startsWith("/auth");
+
+  if (isFormRoute) {
+    return NextResponse.next();
+  }
 
   if (hasSession && isAuthRoute) {
     url.pathname = ROUTES.HOME;
