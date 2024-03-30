@@ -1,5 +1,5 @@
 import HTTP_STATES from "./http-states";
-const { UNAUTHORIZED, UNKNOWN_ERROR, BAD_REQUEST } = HTTP_STATES;
+const { UNAUTHORIZED, UNKNOWN_ERROR, BAD_REQUEST, NOT_FOUND } = HTTP_STATES;
 
 const MESSAGES = {
   AUTH: {
@@ -45,6 +45,51 @@ const MESSAGES = {
       [BAD_REQUEST]: "Petición incorrecta",
       [UNKNOWN_ERROR]: "Inténtalo más tarde",
       [UNAUTHORIZED]: "No autorizado",
+    },
+  },
+  FORM_USER_DATA: {
+    FULL_NAME: {
+      REQUIRED: "El nombre es requerido",
+      SHORT: "El nombre debe tener al menos 5 caracteres",
+      LONG: "El nombre debe tener como máximo 25 caracteres",
+    },
+    PHONE: {
+      REQUIRED: "El teléfono es requerido",
+      SHORT: "El teléfono debe tener al menos 10 caracteres",
+      LONG: "El teléfono debe tener como máximo 15 caracteres",
+    },
+    SEX: {
+      REQUIRED: "El sexo es requerido",
+      TYPE: "El sexo es inválido",
+    },
+    EMERGENCY_CONTACT_FULL_NAME: {
+      REQUIRED: "El nombre es requerido",
+      SHORT: "El nombre debe tener al menos 5 caracteres",
+      LONG: "El nombre debe tener como máximo 25 caracteres",
+    },
+    EMERGENCY_CONTACT_PHONE: {
+      REQUIRED: "El teléfono es requerido",
+      SHORT: "El teléfono debe tener al menos 10 caracteres",
+      LONG: "El teléfono debe tener como máximo 15 caracteres",
+    },
+    ALLERGIES: {
+      SHORT: "Las alergias deben tener al menos 2 caracteres",
+      LONG: "Las alergias deben tener como máximo 200 caracteres",
+    },
+    DISEASES: {
+      SHORT: "Las enfermedades deben tener al menos 2 caracteres",
+      LONG: "Las enfermedades deben tener como máximo 200 caracteres",
+    },
+    MEDICINE: {
+      SHORT: "Los medicamentos deben tener al menos 2 caracteres",
+      LONG: "Los medicamentos deben tener como máximo 200 caracteres",
+    },
+    _: {
+      [BAD_REQUEST]: "Petición incorrecta",
+      [UNKNOWN_ERROR]: "Inténtalo más tarde",
+      [UNAUTHORIZED]: "No autorizado",
+      [NOT_FOUND]: "No encontrado",
+      LOCKED: "El formulario está bloqueado",
     },
   },
 };
