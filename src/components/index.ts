@@ -5,6 +5,7 @@ export { default as ButtonRedirect } from "./buttons/redirect";
 export { default as CardUser } from "./cards/user";
 export { default as FormBranch } from "./forms/branch";
 export { default as FormUserData } from "./forms/user-data";
+export { default as FormUserDataPublic } from "./forms/user-data-public";
 export { default as FormUserInvitation } from "./forms/user-invitation";
 export { default as ItemSubjectReview } from "./items/subject-review/subject-review";
 export { default as ButtonBar } from "./layouts/button-bar/button-bar";
