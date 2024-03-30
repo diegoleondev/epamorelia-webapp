@@ -28,6 +28,7 @@ const initialData = {
 
 const getDataForm = (form: HTMLFormElement) => {
   const formData = new FormData(form);
+  console.log(formData.get("sex"));
   const data = {
     userType: Number(formData.get("userType")),
     fullName: String(formData.get("fullName")),
@@ -113,6 +114,18 @@ export default function FormUserDataPublic(props: Props) {
         <UtilMessageError>{errors.phone}</UtilMessageError>
       </label>
       <label className="label">
+        <span>Soy</span>
+        <select
+          className="input"
+          name="userType"
+          defaultValue={data.userType ?? initialData.userType}
+        >
+          <option value="0">Tio</option>
+          <option value="1">EPA</option>
+          <option value="2">Asesor</option>
+        </select>
+      </label>
+      <label className="label">
         <span>Sede (Auto asignado)</span>
         <input
           type="text"
@@ -126,7 +139,8 @@ export default function FormUserDataPublic(props: Props) {
         <span>Genero</span>
         <select
           className="input"
-          defaultValue={(data.sex, initialData.sex ? "1" : "0")}
+          name="sex"
+          defaultValue={data.sex ?? initialData.sex ? "1" : "0"}
         >
           <option value="0">Femenino</option>
           <option value="1">Masculino</option>
