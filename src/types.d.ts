@@ -2,6 +2,7 @@ interface Branch {
   id: string;
   name: string;
   limit: number;
+  counter: number;
 }
 
 interface User {
