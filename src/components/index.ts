@@ -1,4 +1,5 @@
 export { default as ButtonAsync } from "./buttons/async";
+export { default as ButtonEmbed } from "./buttons/embed";
 export { default as ButtonLink } from "./buttons/link";
 export { default as Button } from "./buttons/normal";
 export { default as ButtonRedirect } from "./buttons/redirect";
