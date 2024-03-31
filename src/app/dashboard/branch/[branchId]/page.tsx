@@ -1,6 +1,6 @@
-import { findOneBranchAPI } from "@/api/branch";
-import { ButtonLink, FormBranch, LayoutScreenGeneric } from "@/components";
+import { ButtonEmbed, LayoutScreenGeneric } from "@/components";
 import { ROUTES } from "@/constants";
+import { IconFiles, IconMapPin, IconUsers } from "@/icons";
 
 interface UpdateBranchProps {
   params: {
@@ -11,25 +11,29 @@ interface UpdateBranchProps {
 export default async function UpdateBranch(props: UpdateBranchProps) {
   const { branchId } = props.params;
 
-  const { data } = await findOneBranchAPI({ id: branchId });
-
-  if (data === undefined || data === null) {
-    return <div>Branch not found</div>;
-  }
-
   return (
-    <LayoutScreenGeneric href={ROUTES.HOME} title="Branch">
-      <FormBranch initialData={data} />
-
-      <ButtonLink href={`${ROUTES.BRANCH}/${branchId}/users`}>
-        Usuarios
-      </ButtonLink>
-      <ButtonLink href={`${ROUTES.BRANCH}/${branchId}/invitations`}>
-        Invitaciones
-      </ButtonLink>
-      <ButtonLink href={`${ROUTES.BRANCH}/${branchId}/forms`}>
-        Formularios
-      </ButtonLink>
+    <LayoutScreenGeneric href={ROUTES.HOME} title="Mi Sede">
+      <ButtonEmbed
+        title="Sede"
+        description={`Editar parámetros de la sede`}
+        iconLeft={<IconMapPin size="small" />}
+        href={`${ROUTES.BRANCH}/${branchId}/users`}
+        color="secondary"
+      />
+      <ButtonEmbed
+        title="Usuarios"
+        description="Invitar, eliminar y gestionar usuarios"
+        iconLeft={<IconUsers size="small" />}
+        href={`${ROUTES.BRANCH}/${branchId}/users`}
+        color="secondary"
+      />
+      <ButtonEmbed
+        title="Formularios"
+        description="Crear, editar y eliminar formularios"
+        iconLeft={<IconFiles size="small" />}
+        color="secondary"
+        href={`${ROUTES.BRANCH}/${branchId}/forms`}
+      />
     </LayoutScreenGeneric>
   );
 }
