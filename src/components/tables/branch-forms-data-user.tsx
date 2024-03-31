@@ -14,6 +14,7 @@ import {
   Modal,
   Text,
   Title,
+  UtilLoader,
 } from "..";
 import styles from "./table.module.css";
 
@@ -171,14 +172,15 @@ function ActionModal(props: ActionModalProps) {
 export default function BranchFormsDataUserTable(
   props: BranchFormUserDataTableProps,
 ) {
-  const [indexed, setIndexed] = useState<Record<string, FormUserData>>({});
+  const [indexed, setIndexed] = useState<
+    Record<string, FormUserData> | undefined
+  >(undefined);
   const [selected, setSelected] = useState<string>("");
 
   const handleAction = (event: React.MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
     const id = target.getAttribute("data-id");
 
-    console.log(id);
     if (typeof id === "string") {
       setSelected(id);
     }
@@ -215,26 +217,29 @@ export default function BranchFormsDataUserTable(
             Editable
           </Text>
         </div>
+        {indexed === undefined && (
+          <div className={styles.empty}>
+            <UtilLoader />
+          </div>
+        )}
         <div className={styles.body}>
-          {Object.keys(indexed).length === 0 && (
-            <div className={styles.row}>No hay formularios</div>
-          )}
-          {Object.entries(indexed).map(([key, form]) => (
-            <div key={form.id} className={styles.row} data-id={form.id}>
-              <Text className={styles.cell} key={form.id}>
-                {form.fullName}
-              </Text>
-              <Text className={styles.cell} align="center">
-                {form.completed && !form.editable ? "✅" : "❌"}
-              </Text>
-              <Text className={styles.cell} align="center">
-                {form.completed ? "si" : "no"}
-              </Text>
-              <Text className={styles.cell} align="center">
-                {form.editable ? "si" : "no"}
-              </Text>
-            </div>
-          ))}
+          {indexed !== undefined &&
+            Object.entries(indexed).map(([key, form]) => (
+              <div key={form.id} className={styles.row} data-id={form.id}>
+                <Text className={styles.cell} key={form.id}>
+                  {form.fullName}
+                </Text>
+                <Text className={styles.cell} align="center">
+                  {form.completed && !form.editable ? "✅" : "❌"}
+                </Text>
+                <Text className={styles.cell} align="center">
+                  {form.completed ? "si" : "no"}
+                </Text>
+                <Text className={styles.cell} align="center">
+                  {form.editable ? "si" : "no"}
+                </Text>
+              </div>
+            ))}
         </div>
         <Anchor
           className={styles.footer}
@@ -245,7 +250,7 @@ export default function BranchFormsDataUserTable(
       </section>
       <Modal onClose={closeModal} open={selected !== ""}>
         <ActionModal
-          data={indexed}
+          data={indexed ?? {}}
           focus={selected}
           onChange={setIndexed}
           onClose={closeModal}
