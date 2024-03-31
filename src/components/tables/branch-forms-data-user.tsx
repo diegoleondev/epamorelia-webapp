@@ -35,7 +35,7 @@ const MODALS = {
   EDITABLE_OFF: {
     title: "Bloquear edición",
     message:
-      "¿Estás seguro que quieres bloquear la edición de este formulario?",
+      "Al bloquear la edición de este formulario, los usuarios no podrán modificarlo. podrás desbloquearlo en cualquier momento.",
     action: {
       label: "Bloquear",
       fun: async (id: string) => {
@@ -51,7 +51,7 @@ const MODALS = {
   EDITABLE_ON: {
     title: "Desbloquear edición",
     message:
-      "¿Estás seguro que quieres desbloquear la edición de este formulario?",
+      "Al desbloquear la edición de este formulario, los usuarios podrán modificarlo. podrás bloquearlo en cualquier momento.",
     action: {
       label: "Desbloquear",
       fun: async (id: string) => {
@@ -113,7 +113,7 @@ function ActionModal(props: ActionModalProps) {
     <>
       <Title>{current.fullName}</Title>
       <ButtonLink
-        color="danger"
+        color="primary"
         href={`${ENV.APP_URL}/form/${current.id}`}
         target="_blank"
       >
