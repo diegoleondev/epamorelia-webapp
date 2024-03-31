@@ -115,6 +115,7 @@ export default function FormUserData(props: Props) {
           <UtilMessageError>{errors.fullName}</UtilMessageError>
         </label>
         <ButtonAsync onClick={handleSubmit}>Crear</ButtonAsync>
+        <UtilMessageError>{errors._}</UtilMessageError>
       </form>
       <Modal open={modal} onClose={closeModal}>
         <Title>Compartir Link 🔗</Title>
