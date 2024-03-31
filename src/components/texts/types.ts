@@ -8,6 +8,8 @@ export declare interface TextStyles {
   align?: "left" | "center" | "right";
   style?: React.CSSProperties;
   flex?: Array<"row" | "column" | "ai-center" | "jc-center">;
+  embed?: boolean;
+  break?: boolean;
 }
 
 export declare type TextProps<T> = TextStyles & React.HTMLAttributes<T>;

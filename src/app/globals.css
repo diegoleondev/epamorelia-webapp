@@ -17,6 +17,15 @@
   --error-color-tx: #ff4d4f;
   --error-color-bg: #ff4d4f;
 
+  --danger-color-00: #f31260;
+  --danger-color-60: #f3126033;
+
+  --success-color-00: #12a150;
+  --success-color-60: #18c96433;
+
+  --warning-color-00: #c3841d;
+  --warning-color-60: #f5a52433;
+
   --primary-text-color: var(--secondary-color-00);
   --secondary-text-color: var(--primary-color-00);
 

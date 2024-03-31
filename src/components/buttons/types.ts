@@ -1,5 +1,5 @@
 export declare interface UseButtonStyleProps {
-  color?: "primary" | "secondary" | "transparent";
+  color?: "primary" | "secondary" | "transparent" | "success" | "danger";
   icon?: boolean;
 }
 
@@ -23,3 +23,10 @@ export declare type RedirectButtonProps = {
 export declare type ButtonAsyncProps = {
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => Promise<unknown>;
 } & ButtonProps;
+
+export declare type ButtonEmbedProps = {
+  title: string;
+  description: string;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
+} & ButtonLinkProps;

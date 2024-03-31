@@ -115,3 +115,13 @@
 .flex--ai-center {
   align-items: center;
 }
+
+.embed {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: var(--secondary-text-color);
+}
+
+.break {
+  word-break: break-all;
+}

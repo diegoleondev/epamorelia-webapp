@@ -1,27 +1,30 @@
-import request from "@/lib/request";
+import requestSSR from "@/utils/request-srr";
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+interface Data {
+  token: string;
+  expiresIn: number;
+}
+
 export async function POST(req: NextRequest) {
   const body = await req.json();
 
-  const response = await request.post({
+  const response = await requestSSR<Data>({
     body,
     url: "/auth/login",
     host: "api",
+    method: "POST",
   });
 
   if (response?.success) {
     const { token, expiresIn } = response.data;
 
-    cookies().set("accessToken", token as string, {
+    cookies().set("accessToken", token, {
       httpOnly: true,
       maxAge: Math.floor(expiresIn / 1000),
     });
-
-    response.data.token = undefined;
-    return NextResponse.json(response);
   }
 
   return NextResponse.json(response);

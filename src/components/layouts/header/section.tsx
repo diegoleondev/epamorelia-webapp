@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, ButtonLink, MainTitle } from "@/components";
 import style from "./header.module.css";
 
@@ -21,7 +23,7 @@ export default function HeaderSection(props: HeaderSectionProps) {
 
   const itemRight =
     props.iconRight !== undefined ? (
-      <Button icon color="transparent" onClick={() => {}}>
+      <Button icon color="transparent" onClick={props.onClick}>
         {props.iconRight}
       </Button>
     ) : (

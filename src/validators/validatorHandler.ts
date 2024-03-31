@@ -1,28 +1,26 @@
+import { DETAILS } from "@/constants";
 import { ZodError, type AnyZodObject } from "zod";
 
 export type Details = Partial<Record<string, string>>;
 
-export type Check = (value: any) => {
-  success: boolean;
-  details: Details;
-};
-
 export const error = (details: Details) => {
   return {
-    success: false,
+    data: null,
+    success: false as const,
     details,
   };
 };
 
 export const success = () => {
   return {
-    success: true,
+    data: {},
+    success: true as const,
     details: {} as unknown as Details,
   };
 };
 
 export const schemaHandler = (schema: AnyZodObject) => {
-  const check: Check = (value) => {
+  const check = (value: any) => {
     try {
       schema.parse(value);
       return success();
@@ -32,14 +30,16 @@ export const schemaHandler = (schema: AnyZodObject) => {
           err.issues.reduce<Details>(
             (acc, { path, message }) => ({
               ...acc,
-              [path[1]]: message,
+              [path[path.length - 1]]: message,
             }),
             {},
           ),
         );
       }
 
-      return error({});
+      return error({
+        _: DETAILS.UNKNOWN,
+      });
     }
   };
 
