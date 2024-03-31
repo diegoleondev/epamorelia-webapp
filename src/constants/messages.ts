@@ -90,6 +90,7 @@ const MESSAGES = {
       [UNAUTHORIZED]: "No autorizado",
       [NOT_FOUND]: "No encontrado",
       LOCKED: "El formulario está bloqueado",
+      LIMIT: "Límite de formularios alcanzado",
     },
   },
 };
