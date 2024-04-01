@@ -1,14 +1,16 @@
-import { HeaderSection, TableBranch } from "@/components";
-import { IconArrowLeft } from "@/icons";
-import styles from "./branch.module.css";
+import { findAllBranchesAPI } from "@/api/branch";
+import { LayoutError, LayoutScreenGeneric, TableBranch } from "@/components";
 
 export default async function BranchPage() {
+  const branches = await findAllBranchesAPI();
+
+  if (!branches.success) {
+    return <LayoutError />;
+  }
+
   return (
-    <article className={styles.article}>
-      <HeaderSection title="Sedes" iconLeft={<IconArrowLeft />} href="/" />
-      <main>
-      <TableBranch />
-      </main>
-    </article>
+    <LayoutScreenGeneric title="Todas las sedes" href="/" padding={false}>
+      <TableBranch data={branches.data} />
+    </LayoutScreenGeneric>
   );
 }
