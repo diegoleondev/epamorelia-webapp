@@ -1,6 +1,6 @@
 import { ButtonEmbed, LayoutScreenGeneric } from "@/components";
 import { ROUTES } from "@/constants";
-import { IconFiles, IconMapPin, IconUsers } from "@/icons";
+import { IconFiles, IconSettingsPin, IconUsers } from "@/icons";
 
 interface UpdateBranchProps {
   params: {
@@ -16,7 +16,7 @@ export default async function UpdateBranch(props: UpdateBranchProps) {
       <ButtonEmbed
         title="Sede"
         description={`Editar parámetros de la sede`}
-        iconLeft={<IconMapPin size="small" />}
+        iconLeft={<IconSettingsPin size="small" />}
         href={`${ROUTES.BRANCH}/${branchId}/users`}
         color="secondary"
       />
