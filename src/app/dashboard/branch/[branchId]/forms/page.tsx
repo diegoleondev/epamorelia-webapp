@@ -33,7 +33,7 @@ export default async function BranchFormsUserData(props: BranchFormsDataUser) {
   return (
     <LayoutScreenGeneric
       href={`${ROUTES.BRANCH}/${branchId}`}
-      title={`Formularios ${branch.data?.name ?? "Sede"}`}
+      title={`Asistentes de ${branch.data?.name ?? "Sede"}`}
       padding={false}
     >
       <TableBranchFormsDataUsers branchId={branchId} forms={forms.data} />

@@ -21,15 +21,15 @@ export default async function UpdateBranch(props: UpdateBranchProps) {
         color="secondary"
       />
       <ButtonEmbed
-        title="Usuarios"
-        description="Invitar, eliminar y gestionar usuarios"
+        title="Equipo"
+        description="Invitar, eliminar y ver miembros del equipo"
         iconLeft={<IconUsers size="small" />}
         href={`${ROUTES.BRANCH}/${branchId}/users`}
         color="secondary"
       />
       <ButtonEmbed
-        title="Formularios"
-        description="Crear, editar y eliminar formularios"
+        title="Asistentes"
+        description="Invitar, eliminar, ver asistentes"
         iconLeft={<IconFiles size="small" />}
         color="secondary"
         href={`${ROUTES.BRANCH}/${branchId}/forms`}
