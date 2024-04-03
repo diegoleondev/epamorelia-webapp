@@ -6,7 +6,7 @@ import { detailsToMessage } from "@/utils/details-to-message";
 import { type Details } from "@/validators/validatorHandler";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { ButtonAsync, UtilMessageError } from "..";
+import { ButtonAsync, Text, UtilMessageError } from "..";
 
 interface Props {
   data: FormUserData;
@@ -93,18 +93,17 @@ export default function FormUserDataPublic(props: Props) {
       }}
     >
       <label className="label">
-        <span>Nombre Completo (Auto asignado)</span>
+        <Text>Nombre Completo</Text>
         <input
           type="text"
           name="fullName"
           className="input"
           defaultValue={data.fullName ?? initialData.fullName}
-          readOnly
         />
         <UtilMessageError>{errors.fullName}</UtilMessageError>
       </label>
       <label className="label">
-        <span>Teléfono</span>
+        <Text>Teléfono</Text>
         <input
           type="number"
           name="phone"
@@ -114,7 +113,7 @@ export default function FormUserDataPublic(props: Props) {
         <UtilMessageError>{errors.phone}</UtilMessageError>
       </label>
       <label className="label">
-        <span>Soy</span>
+        <Text>Soy</Text>
         <select
           className="input"
           name="userType"
@@ -126,7 +125,7 @@ export default function FormUserDataPublic(props: Props) {
         </select>
       </label>
       <label className="label">
-        <span>Sede (Auto asignado)</span>
+        <Text>Sede (Auto asignado)</Text>
         <input
           type="text"
           name="branchId"
@@ -136,7 +135,7 @@ export default function FormUserDataPublic(props: Props) {
         />
       </label>
       <label className="label">
-        <span>Genero</span>
+        <Text>Genero</Text>
         <select
           className="input"
           name="sex"
@@ -147,8 +146,10 @@ export default function FormUserDataPublic(props: Props) {
         </select>
         <UtilMessageError>{errors.sex}</UtilMessageError>
       </label>
+      <br />
+      <span>Contacto de Emergencia</span>
       <label className="label">
-        <span>Contacto de Emergencia</span>
+        <Text>Nombre</Text>
         <input
           type="text"
           name="emergencyContactFullName"
@@ -161,7 +162,7 @@ export default function FormUserDataPublic(props: Props) {
         <UtilMessageError>{errors.emergencyContactFullName}</UtilMessageError>
       </label>
       <label className="label">
-        <span>Teléfono de Emergencia</span>
+        <Text>Teléfono</Text>
         <input
           type="number"
           name="emergencyContactPhone"
@@ -172,10 +173,14 @@ export default function FormUserDataPublic(props: Props) {
         />
         <UtilMessageError>{errors.emergencyContactPhone}</UtilMessageError>
       </label>
+      <br />
+      <span>Información Médica</span>
       <label className="label">
-        <span>Alergias</span>
-        <input
-          type="text"
+        <Text>
+          ¿Eres alérgico a algún alimento o sustancia en particular? Si es así,
+          ¿cuál es tu alergia?
+        </Text>
+        <textarea
           name="allergies"
           className="input"
           defaultValue={data.allergies ?? initialData.allergies}
@@ -183,9 +188,12 @@ export default function FormUserDataPublic(props: Props) {
         <UtilMessageError>{errors.allergies}</UtilMessageError>
       </label>
       <label className="label">
-        <span>Enfermedades</span>
-        <input
-          type="text"
+        <Text>
+          ¿Padeces alguna enfermedad crónica o afección médica que requiera
+          atención especial? Si es así, ¿cuál es la enfermedad o condición que
+          enfrentas?
+        </Text>
+        <textarea
           name="diseases"
           className="input"
           defaultValue={data.diseases ?? initialData.diseases}
@@ -193,15 +201,19 @@ export default function FormUserDataPublic(props: Props) {
         <UtilMessageError>{errors.diseases}</UtilMessageError>
       </label>
       <label className="label">
-        <span>Medicamentos</span>
-        <input
-          type="text"
+        <Text>
+          ¿Tomas algún medicamento de forma regular o puntualmente para tratar
+          alguna condición médica? Si es así, ¿cuál es el medicamento que tomas
+          y para qué lo necesitas?
+        </Text>
+        <textarea
           name="medicine"
           className="input"
           defaultValue={data.medicine ?? initialData.medicine}
         />
         <UtilMessageError>{errors.medicine}</UtilMessageError>
       </label>
+      <br />
       <ButtonAsync type="submit" onClick={updateBranch}>
         Guardar
       </ButtonAsync>
