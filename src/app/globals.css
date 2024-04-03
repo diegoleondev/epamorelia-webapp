@@ -78,6 +78,7 @@ a {
 textarea {
   field-sizing: content;
   resize: none;
+  font-family: inherit;
 }
 
 .list {
