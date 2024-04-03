@@ -3,7 +3,6 @@
 import { findOneBranchAPI } from "@/api/branch";
 import { createFormUserDataApi } from "@/api/form-user-data";
 import { ENV, MESSAGES } from "@/constants";
-import useUserContext from "@/contexts/user";
 import { IconCopy, IconWhatsapp } from "@/icons";
 import { detailsToMessage } from "@/utils/details-to-message";
 import whatsappLink from "@/utils/whatsapp-link";
@@ -20,17 +19,16 @@ import {
   Title,
   UtilMessageError,
 } from "..";
+import Paragraph from "../texts/paragraph";
 
 interface Props {
   branchId: string;
 }
 
 export default function FormUserData(props: Props) {
-  const user = useUserContext();
-
   const { branchId } = props;
   const [fullName, setFullName] = useState("");
-  const [branch, setBranch] = useState("");
+  const [branch, setBranch] = useState<Branch | null>(null);
   const [errors, setErrors] = useState<Details>({});
 
   const [modal, setModal] = useState(false);
@@ -62,6 +60,9 @@ export default function FormUserData(props: Props) {
       openModal();
       setErrors({});
       setFormId(response.data.id);
+      setBranch((prev) =>
+        prev !== null ? { ...prev, counter: prev.counter + 1 } : null,
+      );
       return;
     }
 
@@ -80,7 +81,7 @@ export default function FormUserData(props: Props) {
           return;
         }
 
-        setBranch(response.data?.name);
+        setBranch(response.data);
       })
       .catch(console.error);
   }, []);
@@ -93,16 +94,13 @@ export default function FormUserData(props: Props) {
           e.preventDefault();
         }}
       >
+        <Title>
+          {" "}
+          Tienes {branch?.counter ?? 0} de un limite de {branch?.limit ?? 0}{" "}
+          asistentes
+        </Title>
         <label className="label">
-          Sede
-          <input className="input" type="text" value={branch} readOnly />
-        </label>
-        <label className="label">
-          Creado por
-          <input className="input" type="text" value={user.username} readOnly />
-        </label>
-        <label className="label">
-          Nombre Completo
+          <Paragraph>Nombre del asistente</Paragraph>
           <input
             className="input"
             type="text"
@@ -114,7 +112,7 @@ export default function FormUserData(props: Props) {
           />
           <UtilMessageError>{errors.fullName}</UtilMessageError>
         </label>
-        <ButtonAsync onClick={handleSubmit}>Crear</ButtonAsync>
+        <ButtonAsync onClick={handleSubmit}>Generar Invitación</ButtonAsync>
         <UtilMessageError>{errors._}</UtilMessageError>
       </form>
       <Modal open={modal} onClose={closeModal}>
