@@ -75,6 +75,11 @@ a {
   text-decoration: none;
 }
 
+textarea {
+  field-sizing: content;
+  resize: none;
+}
+
 .list {
   display: flex;
   flex-direction: column;
