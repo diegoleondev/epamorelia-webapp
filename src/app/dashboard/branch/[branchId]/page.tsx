@@ -1,6 +1,6 @@
 import { ButtonEmbed, LayoutScreenGeneric } from "@/components";
 import { ROUTES } from "@/constants";
-import { IconFiles, IconMapPin, IconUsers } from "@/icons";
+import { IconFiles, IconSettingsPin, IconUsers } from "@/icons";
 
 interface UpdateBranchProps {
   params: {
@@ -16,20 +16,20 @@ export default async function UpdateBranch(props: UpdateBranchProps) {
       <ButtonEmbed
         title="Sede"
         description={`Editar parámetros de la sede`}
-        iconLeft={<IconMapPin size="small" />}
+        iconLeft={<IconSettingsPin size="small" />}
         href={`${ROUTES.BRANCH}/${branchId}/users`}
         color="secondary"
       />
       <ButtonEmbed
-        title="Usuarios"
-        description="Invitar, eliminar y gestionar usuarios"
+        title="Equipo"
+        description="Invitar, eliminar y ver miembros del equipo"
         iconLeft={<IconUsers size="small" />}
         href={`${ROUTES.BRANCH}/${branchId}/users`}
         color="secondary"
       />
       <ButtonEmbed
-        title="Formularios"
-        description="Crear, editar y eliminar formularios"
+        title="Asistentes"
+        description="Invitar, eliminar, ver asistentes"
         iconLeft={<IconFiles size="small" />}
         color="secondary"
         href={`${ROUTES.BRANCH}/${branchId}/forms`}

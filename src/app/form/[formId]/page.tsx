@@ -23,9 +23,8 @@ export default async function Form(props: FormProps) {
   return (
     <LayoutScreenAuth>
       <Paragraph>
-        EPA Morelia te invita a completar tus datos para poder ofrecerte un
-        servicio más efectivo y brindarte asistencia en caso de emergencia
-        durante el Octavo Congreso Nacional 2024.
+        La Arquidiócesis de Morelia, te invita a completar los siguientes datos
+        para ofrecerte un servicio más efectivo durante el Congreso Nacional.
       </Paragraph>
       <FormUserDataPublic data={form.data} />
     </LayoutScreenAuth>

@@ -1,16 +1,16 @@
 "use client";
 
 import { updateFormUserDataApi } from "@/api/form-user-data";
-import { ENV, ROUTES } from "@/constants";
+import { ENV } from "@/constants";
 import { index } from "@/utils/parse";
 import parseClassNames from "@/utils/parseClassNames";
 import React, { useEffect, useState } from "react";
 import {
-  Anchor,
   Button,
   ButtonAsync,
   ButtonBar,
   ButtonLink,
+  FormUserData,
   Modal,
   Text,
   Title,
@@ -169,6 +169,7 @@ function ActionModal(props: ActionModalProps) {
     </>
   );
 }
+
 export default function BranchFormsDataUserTable(
   props: BranchFormUserDataTableProps,
 ) {
@@ -176,6 +177,16 @@ export default function BranchFormsDataUserTable(
     Record<string, FormUserData> | undefined
   >(undefined);
   const [selected, setSelected] = useState<string>("");
+
+  const [createModal, setCreateModal] = useState(false);
+
+  const openCreate = () => {
+    setCreateModal(true);
+  };
+
+  const closeCreate = () => {
+    setCreateModal(false);
+  };
 
   const handleAction = (event: React.MouseEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
@@ -241,12 +252,9 @@ export default function BranchFormsDataUserTable(
               </div>
             ))}
         </div>
-        <Anchor
-          className={styles.footer}
-          href={`${ROUTES.BRANCH}/${props.branchId}/forms/create`}
-        >
-          Crear nuevo formulario
-        </Anchor>
+        <Button className={styles.footer} onClick={openCreate}>
+          Invitar asistente
+        </Button>
       </section>
       <Modal onClose={closeModal} open={selected !== ""}>
         <ActionModal
@@ -255,6 +263,9 @@ export default function BranchFormsDataUserTable(
           onChange={setIndexed}
           onClose={closeModal}
         />
+      </Modal>
+      <Modal onClose={closeCreate} open={createModal}>
+        <FormUserData branchId={props.branchId} />
       </Modal>
     </>
   );

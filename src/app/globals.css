@@ -48,7 +48,7 @@ body {
 
 body {
   height: auto;
-  min-height: 100vh;
+  min-height: 100svh;
 
   font-size: 18px;
   color: var(--primary-text-color);
@@ -73,6 +73,12 @@ p {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+textarea {
+  field-sizing: content;
+  resize: none;
+  font-family: inherit;
 }
 
 .list {

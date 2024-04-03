@@ -81,10 +81,7 @@
   left: 0;
   width: 100%;
   bottom: 0;
-  text-transform: uppercase;
   display: inline-block !important;
-  text-align: center;
-  padding: 10px;
 }
 
 .table .empty {
