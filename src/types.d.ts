@@ -15,6 +15,7 @@ interface User {
   username: string;
   verified: boolean;
   token: string;
+  role: number;
 }
 
 interface UserInvitation {
