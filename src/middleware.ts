@@ -2,10 +2,12 @@ import { ROUTES } from "@/constants";
 import { cookies } from "next/headers";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { verifyAuthApi } from "./api/auth";
 
 export async function middleware(request: NextRequest) {
   const url = new URL(request.url);
-  const hasSession = cookies().get("accessToken")?.value !== undefined;
+  const token = cookies().get("accessToken")?.value;
+  const hasSession = await verifyAuthApi(token ?? "");
 
   const isFormRoute = url.pathname.startsWith("/form");
   const isAuthRoute = url.pathname.startsWith("/auth");
