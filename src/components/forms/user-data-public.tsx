@@ -119,8 +119,8 @@ export default function FormUserDataPublic(props: Props) {
           name="userType"
           defaultValue={data.userType ?? initialData.userType}
         >
-          <option value="0">Tio</option>
-          <option value="1">EPA</option>
+          <option value="0">EPA</option>
+          <option value="1">Tio</option>
           <option value="2">Asesor</option>
         </select>
       </label>

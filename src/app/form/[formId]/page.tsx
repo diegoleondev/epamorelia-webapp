@@ -23,7 +23,7 @@ export default async function Form(props: FormProps) {
   return (
     <LayoutScreenAuth>
       <Paragraph>
-        La Arquidiócesis de Morelia, te invita a completar los siguientes datos
+        EPA Arquidiócesis de Morelia, te invita a completar los siguientes datos
         para ofrecerte un servicio más efectivo durante el Congreso Nacional.
       </Paragraph>
       <FormUserDataPublic data={form.data} />

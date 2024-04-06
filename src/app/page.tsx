@@ -57,7 +57,7 @@ export default function Home() {
           color="secondary"
           href={whatsappLink({
             phone: "524434923398",
-            message: `¡Hola! Necesito ayuda. Este es mi ID de EPA en Morelia: ${user.id}`,
+            message: `¡Hola! Necesito ayuda. Este es mi EPA ID: ${user.id}`,
           })}
         />
       </section>
