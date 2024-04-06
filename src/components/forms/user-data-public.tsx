@@ -15,7 +15,8 @@ interface Props {
 const initialData = {
   id: "",
   userType: 0,
-  fullName: "",
+  name: "",
+  surname: "",
   branchId: "",
   phone: "",
   sex: false,
@@ -31,15 +32,18 @@ const getDataForm = (form: HTMLFormElement) => {
   console.log(formData.get("sex"));
   const data = {
     userType: Number(formData.get("userType")),
-    fullName: String(formData.get("fullName")),
+    name: String(formData.get("name")).trim(),
+    surname: String(formData.get("surname")).trim(),
     phone: String(formData.get("phone")),
-    branchId: String(formData.get("branchId")),
+    branchId: String(formData.get("branchId")).trim(),
     sex: formData.get("sex") === "1",
-    emergencyContactFullName: String(formData.get("emergencyContactFullName")),
-    emergencyContactPhone: String(formData.get("emergencyContactPhone")),
-    allergies: String(formData.get("allergies")),
-    diseases: String(formData.get("diseases")),
-    medicine: String(formData.get("medicine")),
+    emergencyContactFullName: String(
+      formData.get("emergencyContactFullName"),
+    ).trim(),
+    emergencyContactPhone: String(formData.get("emergencyContactPhone")).trim(),
+    allergies: String(formData.get("allergies")).trim(),
+    diseases: String(formData.get("diseases")).trim(),
+    medicine: String(formData.get("medicine")).trim(),
   };
 
   return data;
@@ -93,14 +97,26 @@ export default function FormUserDataPublic(props: Props) {
       }}
     >
       <label className="label">
-        <Text>Nombre Completo</Text>
+        <Text>Nombre(s)</Text>
         <input
           type="text"
-          name="fullName"
+          name="name"
           className="input"
-          defaultValue={data.fullName ?? initialData.fullName}
+          defaultValue={data.name ?? initialData.name}
+          autoComplete="name"
         />
-        <UtilMessageError>{errors.fullName}</UtilMessageError>
+        <UtilMessageError>{errors.name}</UtilMessageError>
+      </label>
+      <label className="label">
+        <Text>Apellidos</Text>
+        <input
+          type="text"
+          name="surname"
+          className="input"
+          defaultValue={data.surname ?? initialData.surname}
+          autoComplete="family-name"
+        />
+        <UtilMessageError>{errors.surname}</UtilMessageError>
       </label>
       <label className="label">
         <Text>Teléfono</Text>
@@ -108,6 +124,7 @@ export default function FormUserDataPublic(props: Props) {
           type="number"
           name="phone"
           className="input"
+          autoComplete="tel"
           defaultValue={data.phone ?? initialData.phone}
         />
         <UtilMessageError>{errors.phone}</UtilMessageError>

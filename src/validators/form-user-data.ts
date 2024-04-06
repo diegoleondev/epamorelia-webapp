@@ -21,12 +21,12 @@ const userTypeSchema = z.number({
   invalid_type_error: DETAILS.TYPE,
 });
 
-const fullNameSchema = z
+const nameSchema = z
   .string({
     required_error: DETAILS.EMPTY,
     invalid_type_error: DETAILS.TYPE,
   })
-  .min(5, DETAILS.SHORT)
+  .min(3, DETAILS.SHORT)
   .max(30, DETAILS.LONG);
 
 const phoneSchema = z
@@ -42,7 +42,7 @@ const sexSchema = z.boolean({
   invalid_type_error: DETAILS.TYPE,
 });
 
-const emergencyContactFullNameSchema = fullNameSchema;
+const emergencyContactFullNameSchema = nameSchema;
 const emergencyContactPhoneSchema = phoneSchema;
 const allergiesSchema = textSchema;
 const diseasesSchema = textSchema;
@@ -71,7 +71,8 @@ export type FindAllFormUserDataOptions = z.infer<
 /* CREATE */
 const createFormUserDataSchema = z.object({
   branchId: branchIdSchema,
-  fullName: fullNameSchema,
+  name: nameSchema,
+  surname: nameSchema.optional(),
 });
 export const createFormUserDataValidator = schemaHandler(
   createFormUserDataSchema,
@@ -96,7 +97,8 @@ const updateFormUserDataPublicSchema = z.object({
   editable: z.boolean().optional(),
   deleted: z.boolean().optional(),
   userType: userTypeSchema.optional(),
-  fullName: fullNameSchema.optional(),
+  name: nameSchema.optional(),
+  surname: nameSchema.optional(),
   phone: phoneSchema.optional(),
   sex: sexSchema.optional(),
   emergencyContactFullName: emergencyContactFullNameSchema.optional(),

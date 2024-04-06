@@ -7,7 +7,7 @@ import { detailsToMessage } from "@/utils/details-to-message";
 import { type Details } from "@/validators/validatorHandler";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { ButtonAsync, ModalShareLink, Title, UtilMessageError } from "..";
+import { ButtonAsync, ModalShareLink, Text, Title, UtilMessageError } from "..";
 import Paragraph from "../texts/paragraph";
 
 interface Props {
@@ -16,7 +16,12 @@ interface Props {
 
 export default function FormUserData(props: Props) {
   const { branchId } = props;
-  const [fullName, setFullName] = useState("");
+  const [form, setForm] = useState({
+    name: "",
+    surname: "",
+    branchId,
+  });
+
   const [branch, setBranch] = useState<Branch | null>(null);
   const [errors, setErrors] = useState<Details>({});
 
@@ -31,11 +36,24 @@ export default function FormUserData(props: Props) {
     setModal(false);
   };
 
+  const onChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = async (e: any) => {
-    const response = await createFormUserDataApi({ fullName, branchId });
+    const response = await createFormUserDataApi(form);
     if (response.success) {
       toast.success("Formulario creado");
-      setFullName("");
+      setForm({
+        name: "",
+        surname: "",
+        branchId,
+      });
       openModal();
       setErrors({});
       setFormId(response.data.id);
@@ -77,18 +95,28 @@ export default function FormUserData(props: Props) {
           Tienes {branch?.counter ?? 0} de un limite de {branch?.limit ?? 0}{" "}
           asistentes
         </Title>
+        <Text>Datos del asistente</Text>
         <label className="label">
-          <Paragraph>Nombre del asistente</Paragraph>
+          <Paragraph>Nombre(s)</Paragraph>
           <input
             className="input"
             type="text"
-            name="fullName"
-            value={fullName}
-            onChange={(e) => {
-              setFullName(e.target.value);
-            }}
+            name="name"
+            value={form.name}
+            onChange={onChange}
           />
-          <UtilMessageError>{errors.fullName}</UtilMessageError>
+          <UtilMessageError>{errors.name}</UtilMessageError>
+        </label>
+        <label className="label">
+          <Paragraph>Apellidos (opcional)</Paragraph>
+          <input
+            className="input"
+            type="text"
+            name="surname"
+            value={form.surname}
+            onChange={onChange}
+          />
+          <UtilMessageError>{errors.surname}</UtilMessageError>
         </label>
         <ButtonAsync onClick={handleSubmit}>Generar Invitación</ButtonAsync>
         <UtilMessageError>{errors._}</UtilMessageError>
