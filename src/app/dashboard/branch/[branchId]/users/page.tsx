@@ -1,6 +1,5 @@
 import { findOneBranchAPI } from "@/api/branch";
 import { LayoutScreenGeneric, TableBranchUsers } from "@/components";
-import { ROUTES } from "@/constants";
 
 interface BranchUsersPageProps {
   params: {
@@ -16,7 +15,7 @@ export default async function BranchUsersPage(props: BranchUsersPageProps) {
   return (
     <LayoutScreenGeneric
       title={`Usuarios de ${branchResult.data?.name ?? "Sede"}`}
-      href={`${ROUTES.BRANCH}/${branchId}`}
+      href={`/`}
       padding={false}
     >
       <TableBranchUsers branchId={branchId} />

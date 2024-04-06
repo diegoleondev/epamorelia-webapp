@@ -3,22 +3,11 @@
 import { findOneBranchAPI } from "@/api/branch";
 import { createFormUserDataApi } from "@/api/form-user-data";
 import { ENV, MESSAGES } from "@/constants";
-import { IconCopy, IconWhatsapp } from "@/icons";
 import { detailsToMessage } from "@/utils/details-to-message";
-import whatsappLink from "@/utils/whatsapp-link";
 import { type Details } from "@/validators/validatorHandler";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import {
-  Anchor,
-  Button,
-  ButtonAsync,
-  ButtonBar,
-  ButtonLink,
-  Modal,
-  Title,
-  UtilMessageError,
-} from "..";
+import { ButtonAsync, ModalShareLink, Title, UtilMessageError } from "..";
 import Paragraph from "../texts/paragraph";
 
 interface Props {
@@ -40,16 +29,6 @@ export default function FormUserData(props: Props) {
   };
   const closeModal = () => {
     setModal(false);
-  };
-
-  const copyUrl = () => {
-    console.log("copyUrl");
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    toast.promise(navigator.clipboard.writeText(url), {
-      loading: "Copiando...",
-      success: "Copiado",
-      error: "Error al copiar",
-    });
   };
 
   const handleSubmit = async (e: any) => {
@@ -95,7 +74,6 @@ export default function FormUserData(props: Props) {
         }}
       >
         <Title>
-          {" "}
           Tienes {branch?.counter ?? 0} de un limite de {branch?.limit ?? 0}{" "}
           asistentes
         </Title>
@@ -115,24 +93,11 @@ export default function FormUserData(props: Props) {
         <ButtonAsync onClick={handleSubmit}>Generar Invitación</ButtonAsync>
         <UtilMessageError>{errors._}</UtilMessageError>
       </form>
-      <Modal open={modal} onClose={closeModal}>
-        <Title>Compartir Link 🔗</Title>
-        <Anchor href={url} target="_blank" embed break>
-          {url}
-        </Anchor>
-        <ButtonBar>
-          <ButtonLink
-            icon
-            href={whatsappLink({ message: url })}
-            target="_blank"
-          >
-            <IconWhatsapp />
-          </ButtonLink>
-          <Button icon onClick={copyUrl}>
-            <IconCopy />
-          </Button>
-        </ButtonBar>
-      </Modal>
+      <ModalShareLink
+        isOpen={modal && formId !== ""}
+        onClose={closeModal}
+        url={url}
+      />
     </>
   );
 }

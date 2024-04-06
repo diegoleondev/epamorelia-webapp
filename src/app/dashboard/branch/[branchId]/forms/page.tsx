@@ -5,7 +5,6 @@ import {
   TableBranchFormsDataUsers,
   Title,
 } from "@/components";
-import { ROUTES } from "@/constants";
 
 interface BranchFormsDataUser {
   params: {
@@ -32,7 +31,7 @@ export default async function BranchFormsUserData(props: BranchFormsDataUser) {
 
   return (
     <LayoutScreenGeneric
-      href={`${ROUTES.BRANCH}/${branchId}`}
+      href={`/`}
       title={`Asistentes de ${branch.data?.name ?? "Sede"}`}
       padding={false}
     >

@@ -1,6 +1,5 @@
 import { findOneBranchAPI } from "@/api/branch";
 import { LayoutScreenGeneric, TableBranchInvitations } from "@/components";
-import { ROUTES } from "@/constants";
 
 interface BranchInvitationsProps {
   params: {
@@ -15,7 +14,7 @@ export default async function BranchInvitations(props: BranchInvitationsProps) {
 
   return (
     <LayoutScreenGeneric
-      href={`${ROUTES.BRANCH}/${branchId}`}
+      href={`/`}
       title={`Invitaciones de ${branchResult.data?.name ?? "Sede"}`}
       padding={false}
     >

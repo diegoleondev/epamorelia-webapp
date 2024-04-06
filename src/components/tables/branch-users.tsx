@@ -4,7 +4,7 @@ import { findAllBranchUsersAPI } from "@/api/branch";
 import { ROUTES } from "@/constants";
 import parseClassNames from "@/utils/parseClassNames";
 import { useEffect, useState } from "react";
-import { Anchor, Text, UtilLoader } from "..";
+import { ButtonLink, Text, UtilLoader } from "..";
 import styles from "./table.module.css";
 
 export default function BranchUsers(props: { branchId: string }) {
@@ -25,7 +25,6 @@ export default function BranchUsers(props: { branchId: string }) {
       <div className={parseClassNames(styles.row, styles.header)}>
         <Text className={styles.cell}>Nombre</Text>
         <Text className={styles.cell}>Rol</Text>
-        <Text className={styles.cell}>email</Text>
       </div>
       {data === undefined && (
         <div className={styles.empty}>
@@ -37,13 +36,12 @@ export default function BranchUsers(props: { branchId: string }) {
           <div key={branch.id} className={styles.row}>
             <Text className={styles.cell}>{branch.username}</Text>
             <Text className={styles.cell}>{branch.roleId}</Text>
-            <Text className={styles.cell}>{branch.email}</Text>
           </div>
         ))}
       </div>
-      <Anchor className={styles.footer} href={`${ROUTES.USER}/new`}>
+      <ButtonLink href={`${ROUTES.USER}/new`} color="secondary">
         Invitar usuario
-      </Anchor>
+      </ButtonLink>
     </section>
   );
 }
