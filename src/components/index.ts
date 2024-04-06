@@ -12,6 +12,7 @@ export { default as ItemSubjectReview } from "./items/subject-review/subject-rev
 export { default as ButtonBar } from "./layouts/button-bar/button-bar";
 export { default as HeaderSection } from "./layouts/header/section";
 export { default as Modal } from "./layouts/modal/modal";
+export { default as ModalShareLink } from "./layouts/modal/share-link";
 export { default as LayoutScreenAuth } from "./layouts/screen-auth/screen-auth";
 export { default as LayoutError } from "./layouts/screen-error/screen-error";
 export { default as LayoutScreenGeneric } from "./layouts/screen-generic/screen-generic";
