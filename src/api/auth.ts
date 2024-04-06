@@ -65,3 +65,15 @@ export async function resetPasswordApi(body: ResetPasswordProps) {
     method: "POST",
   });
 }
+
+export async function verifyAuthApi(token: string) {
+  const response = await requestCSR({
+    url: `/auth/verify?token=${token}`,
+    host: "api",
+    method: "GET",
+  });
+
+  if (!response.success) return false;
+
+  return true;
+}
