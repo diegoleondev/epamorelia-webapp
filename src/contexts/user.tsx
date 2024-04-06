@@ -12,6 +12,7 @@ const initialData: User = {
   username: "",
   email: "",
   roleId: "",
+  role: 0,
   branchId: "",
   createdAt: "",
   expiresIn: 0,
