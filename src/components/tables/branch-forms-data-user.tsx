@@ -111,7 +111,7 @@ function ActionModal(props: ActionModalProps) {
 
   return (
     <>
-      <Title>{current.fullName}</Title>
+      <Title>{`${current.name} ${current.surname}`}</Title>
       <ButtonLink
         color="primary"
         href={`${ENV.APP_URL}/form/${current.id}`}
@@ -204,7 +204,9 @@ export default function BranchFormsDataUserTable(
   useEffect(() => {
     setIndexed(
       index(
-        props.forms.sort((a, b) => a.fullName.localeCompare(b.fullName)),
+        props.forms.sort((a, b) =>
+          (a.name + a.surname).localeCompare(b.name + b.surname),
+        ),
         "id",
       ),
     );
@@ -238,7 +240,7 @@ export default function BranchFormsDataUserTable(
             Object.entries(indexed).map(([key, form]) => (
               <div key={form.id} className={styles.row} data-id={form.id}>
                 <Text className={styles.cell} key={form.id}>
-                  {form.fullName}
+                  {form.name} {form.surname}
                 </Text>
                 <Text className={styles.cell} align="center">
                   {form.completed && !form.editable ? "✅" : "❌"}
