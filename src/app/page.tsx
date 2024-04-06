@@ -1,6 +1,7 @@
 "use client";
 
 import { ButtonEmbed, CardUser } from "@/components";
+import ROLES from "@/constants/roles";
 import useUserContext from "@/contexts/user";
 import { IconMapPin, IconMapPins } from "@/icons";
 import styles from "./page.module.css";
@@ -17,13 +18,15 @@ export default function Home() {
       />
       <section className={styles.menu}>
         <h2>Menu</h2>
-        <ButtonEmbed
-          title="Todas las sedes"
-          href="/dashboard/branch"
-          description="Ver todas las sedes"
-          iconLeft={<IconMapPins size="small" />}
-          color="secondary"
-        />
+        {user.role >= ROLES.ADMIN && (
+          <ButtonEmbed
+            title="Todas las sedes"
+            href="/dashboard/branch"
+            description="Ver todas las sedes"
+            iconLeft={<IconMapPins size="small" />}
+            color="secondary"
+          />
+        )}
         <ButtonEmbed
           title="Mi sede"
           href={`/dashboard/branch/${user.branchId}`}
