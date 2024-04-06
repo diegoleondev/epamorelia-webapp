@@ -10,7 +10,7 @@ const idSchema = z
   })
   .uuid(DETAILS.FORMAT);
 
-const rolIdSchema = z.enum(["ADMIN", "MANAGER", "STAFF", "USER"]);
+const rolIdSchema = z.enum(["ADMIN", "COORDINATOR", "STAFF", "USER"]);
 
 const getSchema = z.object({
   id: idSchema,
