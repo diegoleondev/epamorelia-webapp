@@ -31,7 +31,8 @@ interface UserInvitation {
 interface FormUserData {
   id: string;
   userType: string;
-  fullName: string;
+  name: string;
+  surname: string;
   phone: string;
   branchId: string;
   sex: boolean;
