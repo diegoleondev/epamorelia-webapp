@@ -14,5 +14,6 @@ export { default as IconMapPin } from "./map-pint";
 export { default as IconPlus } from "./plus";
 export { default as IconSettingsPin } from "./settings-pin";
 export { default as IconUser } from "./user";
+export { default as IconUserDawn } from "./user-dawn";
 export { default as IconUsers } from "./users";
 export { default as IconWhatsapp } from "./whatsapp";
