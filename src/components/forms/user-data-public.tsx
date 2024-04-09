@@ -7,6 +7,7 @@ import { type Details } from "@/validators/validatorHandler";
 import { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { ButtonAsync, Text, UtilMessageError } from "..";
+import Paragraph from "../texts/paragraph";
 
 interface Props {
   data: FormUserData;
@@ -96,6 +97,11 @@ export default function FormUserDataPublic(props: Props) {
         e.preventDefault();
       }}
     >
+      <Text>
+        <Paragraph>
+          Asegúrate de que tus datos sean correctos y estén completos
+        </Paragraph>
+      </Text>
       <label className="label">
         <Text>Nombre(s)</Text>
         <input
