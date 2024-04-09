@@ -76,7 +76,7 @@ export default function Table(props: BranchTableProps) {
             Limite
           </Text>
           <Text className={styles.cell} align="center">
-            Registrados
+            Asistentes
           </Text>
         </div>
         {data === undefined && (
