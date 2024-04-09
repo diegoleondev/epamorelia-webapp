@@ -18,7 +18,7 @@ export default function FormUserData(props: Props) {
   const { branchId } = props;
   const [form, setForm] = useState({
     name: "",
-    surname: "",
+    surname: undefined as string | undefined,
     branchId,
   });
 
@@ -51,7 +51,7 @@ export default function FormUserData(props: Props) {
       toast.success("Formulario creado");
       setForm({
         name: "",
-        surname: "",
+        surname: undefined,
         branchId,
       });
       openModal();
@@ -113,7 +113,7 @@ export default function FormUserData(props: Props) {
             className="input"
             type="text"
             name="surname"
-            value={form.surname}
+            value={form.surname ?? ""}
             onChange={onChange}
           />
           <UtilMessageError>{errors.surname}</UtilMessageError>
