@@ -4,7 +4,6 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  padding: 0 1rem 1rem;
 }
 
 .body {
@@ -21,7 +20,7 @@
   grid-template-columns: 150px repeat(2, 90px);
   border-bottom: 1px solid var(--primary-color-60);
   cursor: pointer;
-  padding: 0 20px;
+  overflow: hidden;
 }
 
 .table .row::after {
@@ -35,7 +34,7 @@
 }
 
 .table .row .cell {
-  padding: 10px 0;
+  padding: 10px 20px;
   z-index: 0;
 }
 
@@ -100,4 +99,8 @@
 .formUserData .row {
   display: grid;
   grid-template-columns: 150px repeat(3, 90px);
+}
+
+.bcIn .row {
+  grid-template-columns: 150px 100px 150px 150px;
 }
