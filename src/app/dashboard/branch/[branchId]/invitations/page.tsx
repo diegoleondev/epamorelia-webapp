@@ -18,7 +18,7 @@ export default async function BranchInvitations(props: BranchInvitationsProps) {
       title={`Invitaciones de ${branchResult.data?.name ?? "Sede"}`}
       padding={false}
     >
-      <TableBranchInvitations branchId={branchId} />
+      <TableBranchInvitations data={[]} />
     </LayoutScreenGeneric>
   );
 }
