@@ -24,7 +24,7 @@ export default function LayoutScreenAuth(props: LayoutScreenAuthProps) {
         </Link>
       </header>
       <main className={styles.main}>
-        <h2 className={styles.title}>8.º Congreso Nacional EPA</h2>
+        <h2 className={styles.title}>9.º Congreso Nacional EPA</h2>
         {props.children}
       </main>
       <footer className={styles.footer}></footer>
