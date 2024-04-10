@@ -1,5 +1,6 @@
-import { findOneBranchAPI } from "@/api/branch";
-import { LayoutScreenGeneric, TableBranchUsers } from "@/components";
+import { findAllBranchUsersAPI, findOneBranchAPI } from "@/api/branch";
+import { findAllUserInvitationsApi } from "@/api/user-invitation";
+import { LayoutScreenGeneric, TableBranchInvitations } from "@/components";
 
 interface BranchUsersPageProps {
   params: {
@@ -7,10 +8,31 @@ interface BranchUsersPageProps {
   };
 }
 
+type UsersIndexed = Record<string, Omit<User, "id">>;
+
 export default async function BranchUsersPage(props: BranchUsersPageProps) {
   const { branchId } = props.params;
 
   const branchResult = await findOneBranchAPI({ id: branchId });
+
+  const userInvitationsResult = await findAllUserInvitationsApi({
+    branchId,
+  });
+
+  const usersResult = await findAllBranchUsersAPI({ id: branchId });
+  const usersIndexed: UsersIndexed =
+    usersResult.data?.reduce(
+      (acc, { id, ...rest }) => ({ ...acc, [id]: rest }),
+      {},
+    ) ?? {};
+
+  const data = userInvitationsResult.data?.map((invitation) => ({
+    id: invitation.id,
+    sourceUserName: usersIndexed[invitation.sourceUserId]?.username,
+    targetUserName: usersIndexed[invitation.targetUserId ?? ""]?.username,
+    roleId: invitation.roleId,
+    reference: invitation.reference,
+  }));
 
   return (
     <LayoutScreenGeneric
@@ -18,7 +40,7 @@ export default async function BranchUsersPage(props: BranchUsersPageProps) {
       href={`/`}
       padding={false}
     >
-      <TableBranchUsers branchId={branchId} />
+      <TableBranchInvitations data={data} />
     </LayoutScreenGeneric>
   );
 }
