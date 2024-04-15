@@ -55,7 +55,7 @@ export async function forgotPasswordApi(body: ForgotPasswordProps) {
 }
 
 export async function resetPasswordApi(body: ResetPasswordProps) {
-  const preRequest = resetPasswordValidator({ body });
+  const preRequest = resetPasswordValidator(body);
   if (!preRequest.success) return preRequest;
 
   return await requestCSR({
