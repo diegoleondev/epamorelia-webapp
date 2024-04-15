@@ -43,7 +43,7 @@ export async function logOutApi() {
 }
 
 export async function forgotPasswordApi(body: ForgotPasswordProps) {
-  const preRequest = forgotPasswordValidator({ body });
+  const preRequest = forgotPasswordValidator(body);
   if (!preRequest.success) return preRequest;
 
   return await requestCSR({
