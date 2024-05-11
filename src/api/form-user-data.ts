@@ -1,3 +1,4 @@
+import { ENV } from "@/constants";
 import requestCSR from "@/utils/request-csr";
 import requestSSR from "@/utils/request-srr";
 import { objectToSearchParams } from "@/utils/url";
@@ -91,4 +92,28 @@ export async function deleteFormUserDataApi(
     method: "DELETE",
     body: options,
   });
+}
+
+export async function downloadFormUserDataApi(
+  options: FindAllFormUserDataOptions,
+) {
+  const preRequest = FindAllFormUserDataValidator(options);
+  if (!preRequest.success) return preRequest;
+
+  return await fetch(
+    `${ENV.API_URL}/form/user-data/xlsx?` + objectToSearchParams(options),
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    },
+  )
+    .then(async (res) => ({
+      success: res.ok,
+      data: await res.blob(),
+    }))
+    .catch(() => ({
+      success: false,
+      data: null,
+    }));
 }
