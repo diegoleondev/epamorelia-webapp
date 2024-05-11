@@ -1,7 +1,9 @@
 "use client";
 
+import { downloadFormUserDataApi } from "@/api/form-user-data";
 import {
   Button,
+  ButtonAsync,
   ButtonLink,
   Modal,
   Text,
@@ -9,6 +11,7 @@ import {
   UtilLoader,
 } from "@/components";
 import { ROUTES } from "@/constants";
+import { downloadBlob } from "@/utils/download-file";
 import parseClassNames from "@/utils/parseClassNames";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
@@ -35,13 +38,24 @@ function ModalActions(props: ActionsProps) {
     }
   }, [props.data]);
 
+  const downloadXlsx = async () => {
+    const res = await downloadFormUserDataApi({ branchId: branch?.id });
+
+    if (!res.success || res.data === null) {
+      return toast.error("Error al descargar el archivo");
+    }
+
+    downloadBlob({
+      blob: res.data,
+      filename: `${branch?.name}-Asistentes.xlsx`,
+    });
+  };
+
   return (
     <>
       <Title>{branch?.name}</Title>
       <ButtonLink href={`${ROUTES.BRANCH}/${branch?.id}`}>Ver</ButtonLink>
-      <Button onClick={() => toast.success("En desarrollo 😊")}>
-        Descargar excel
-      </Button>
+      <ButtonAsync onClick={downloadXlsx}>Descargar excel</ButtonAsync>
       <Button onClick={props.onClose} color="secondary">
         Cerrar
       </Button>
