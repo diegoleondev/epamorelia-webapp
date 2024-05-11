@@ -5,6 +5,7 @@ import {
   TableBranchFormsDataUsers,
   Title,
 } from "@/components";
+import DownloadXLSX from "./dowload-xlsx";
 
 interface BranchFormsDataUser {
   params: {
@@ -36,6 +37,7 @@ export default async function BranchFormsUserData(props: BranchFormsDataUser) {
       padding={false}
     >
       <TableBranchFormsDataUsers branchId={branchId} forms={forms.data} />
+      <DownloadXLSX branch={branch.data} />
     </LayoutScreenGeneric>
   );
 }
